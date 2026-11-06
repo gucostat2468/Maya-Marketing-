@@ -27,3 +27,7 @@ Thumbs.db
 
 # Leads e dados pessoais nunca entram no repositório (LGPD)
 dados/leads/
+
+# Entregas ficam no Escritório Maya, não no GitHub (rascunho local)
+entregas/*
+!entregas/LEIAME.md

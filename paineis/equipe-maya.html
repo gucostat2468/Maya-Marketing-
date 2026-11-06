@@ -147,6 +147,55 @@ h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
 .approve button { min-height: 34px; padding: 4px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 600; font-size: 13px; }
 .approve button.ok { background: var(--green); border-color: var(--green); color: var(--surface); }
 
+/* Abas e entregas */
+.tabs { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); width: fit-content; }
+.tabs a { padding: 7px 16px; border-radius: 999px; text-decoration: none; color: var(--muted); font-weight: 600; font-size: 14px; }
+.tabs a[aria-current="page"] { background: var(--brand); color: var(--surface); }
+.tabs .count { margin-left: 4px; font-variant-numeric: tabular-nums; }
+.deliveries { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr)); gap: 14px; }
+.dcard { text-align: left; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 0; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; }
+.dcard:hover { border-color: var(--brand); }
+.dthumb { aspect-ratio: 4 / 5; background: var(--room); display: grid; place-items: center; overflow: hidden; }
+.dthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dthumb .doc { font-family: var(--display); font-size: 16px; color: var(--fg); padding: 22px; text-align: center; line-height: 1.35; }
+.dthumb .doc small { display: block; font-family: var(--body); font-size: 12px; color: var(--muted); margin-top: 8px; }
+.dbody { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+.dbody strong { font-size: 14.5px; line-height: 1.3; }
+.dbody span { font-size: 12.5px; color: var(--muted); }
+.t-aguardando_aprovacao { background: var(--gold-soft); color: var(--gold); }
+.t-aprovada, .t-entregue { background: var(--green-soft); color: var(--green); }
+.t-ajustar { background: var(--red-soft); color: var(--red); }
+.empty-deliv { padding: 24px; border: 1px dashed var(--line); border-radius: 12px; color: var(--muted); background: var(--surface); }
+.viewer { position: fixed; inset: 0; z-index: 30; background: var(--bg); overflow-y: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: max(16px, env(safe-area-inset-top, 0px)) 64px; }
+.viewer[hidden] { display: none; }
+.viewer-inner { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; }
+.vhead { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: start; }
+.vhead h2 { font-size: clamp(20px, 3vw, 28px); font-weight: 400; }
+.vhead p { color: var(--muted); font-size: 14px; margin: 6px 0 0; }
+.vactions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.btn { min-height: 38px; padding: 6px 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 600; font-size: 14px; }
+.btn:hover { border-color: var(--brand); }
+.btn.ok { background: var(--brand); border-color: var(--brand); color: var(--surface); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.item { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.item-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.item-row strong { font-size: 14px; }
+.item img { max-width: 100%; height: auto; max-height: 82vh; border-radius: 8px; display: block; margin: 0 auto; }
+.md { font-size: 15px; line-height: 1.65; overflow-wrap: anywhere; min-width: 0; }
+.md h1, .md h2, .md h3, .md h4 { font-family: var(--display); font-weight: 400; margin: 20px 0 8px; }
+.md h1 { font-size: 24px; } .md h2 { font-size: 20px; } .md h3 { font-size: 17px; }
+.md p, .md ul, .md ol { margin: 0 0 10px; }
+.md table { border-collapse: collapse; display: block; overflow-x: auto; max-width: 100%; margin: 8px 0 14px; font-size: 14px; }
+.md th, .md td { border: 1px solid var(--line); padding: 6px 9px; text-align: left; vertical-align: top; }
+.md code { background: var(--room); padding: 1px 5px; border-radius: 4px; font-size: 13px; }
+.md pre { background: var(--room); padding: 12px; border-radius: 8px; overflow-x: auto; }
+.md pre code { background: none; padding: 0; }
+.md a { color: var(--brand); }
+.feedback { font-size: 13px; color: var(--muted); }
+.agent-deliv { display: flex; flex-direction: column; gap: 6px; }
+.agent-deliv button { text-align: left; border: 1px solid var(--line); background: var(--room); border-radius: 8px; padding: 7px 10px; cursor: pointer; font-size: 13px; }
+.agent-deliv button:hover { border-color: var(--brand); }
+
 @media (max-width: 860px) {
   .app.open { grid-template-columns: minmax(0, 1fr); }
   .chat { position: fixed; inset: auto 0 0 0; height: 78dvh; border-left: 0; border-top: 1px solid var(--line); border-radius: 14px 14px 0 0; z-index: 20; box-shadow: 0 -10px 30px color-mix(in oklab, var(--fg) 18%, transparent); }
@@ -166,11 +215,22 @@ h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
         <span class="stat"><b id="n-block">0</b> bloqueados</span>
       </div>
     </div>
+    <nav class="tabs" aria-label="Seções">
+      <a href="#escritorio" id="tab-office" aria-current="page">Escritório</a>
+      <a href="#entregas" id="tab-deliv">Entregas<span class="count" id="n-deliv"></span></a>
+    </nav>
     <p class="sync" id="sync" aria-live="polite">Ligando o escritório…</p>
     <div class="floor" id="floor"></div>
+    <section id="view-deliveries" hidden aria-label="Entregas da equipe">
+      <div class="deliveries" id="deliveries"></div>
+    </section>
   </main>
   <aside class="chat" id="chat" hidden aria-label="Conversa com o agente"></aside>
 </div>
+<div class="viewer" id="viewer" hidden role="dialog" aria-modal="true" aria-label="Entrega"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 
 <script>
 const TEAM = [
@@ -198,8 +258,10 @@ const SUGGEST = {
 };
 const LABEL = { livre: "Livre", trabalhando: "Trabalhando", aguardando: "Esperando você", bloqueado: "Bloqueado" };
 
-const state = { agents: {}, msgs: [], tasks: [], approvals: {}, open: null };
-let db = null, comments = null, canSend = "off";
+const state = { agents: {}, msgs: [], tasks: [], approvals: {}, entregas: [], open: null, drafts: {}, view: "office", entrega: null };
+let db = null, comments = null, downloads = null, canSend = "off";
+const DSTATUS = { aguardando_aprovacao: "Aguardando aprovação", aprovada: "Aprovada", ajustar: "Ajuste pedido", entregue: "Entregue" };
+const blobUrl = id => "/_blob/" + id;
 const threads = {};
 const $ = id => document.getElementById(id);
 const el = (t, c, x) => { const n = document.createElement(t); if (c) n.className = c; if (x != null) n.textContent = x; return n; };
@@ -250,7 +312,6 @@ function renderChat() {
   const chat = $("chat"), app = $("app");
   const k = state.open;
   if (!k) { chat.hidden = true; app.classList.remove("open"); return; }
-  const keepDraft = $("msg-input")?.dataset.agent === k ? $("msg-input").value : "";
   chat.hidden = false; app.classList.add("open"); chat.replaceChildren();
   const st = statusOf(k), a = state.agents[k] || {};
 
@@ -271,9 +332,16 @@ function renderChat() {
     const row = el("div", "approve");
     const ok = el("button", "ok", "Aprovar"); ok.type = "button";
     const fix = el("button", null, "Pedir ajuste"); fix.type = "button";
-    const decide = async d => { ok.disabled = fix.disabled = true; try { await db.collection("aprovacoes").doc(task.id).set({ decisao: d, comentario: "", em: new Date().toISOString(), tarefa: task.titulo || "" }); if (d === "ajustar") { $("msg-input").value = "Ajuste em \"" + (task.titulo || "") + "\": "; $("msg-input").focus(); } } catch { ok.disabled = fix.disabled = false; } };
+    const decide = async d => { ok.disabled = fix.disabled = true; try { await db.collection("aprovacoes").doc(task.id).set({ decisao: d, comentario: "", em: new Date().toISOString(), tarefa: task.titulo || "" }); if (d === "ajustar") { state.drafts[k] = "Ajuste em \"" + (task.titulo || "") + "\": "; renderAll(); $("msg-input")?.focus(); } } catch { ok.disabled = fix.disabled = false; } };
     ok.addEventListener("click", () => decide("aprovado")); fix.addEventListener("click", () => decide("ajustar"));
     row.append(ok, fix); now.append(row);
+  }
+  const mineDeliv = state.entregas.filter(x => x.agente === k).slice(0, 5);
+  if (mineDeliv.length) {
+    now.append(el("strong", null, "Entregas"));
+    const box = el("div", "agent-deliv");
+    mineDeliv.forEach(x => { const b = el("button", null, (x.titulo || "Entrega") + "  (" + (DSTATUS[x.status] || "Entregue") + ")"); b.type = "button"; b.addEventListener("click", () => openEntrega(x.id)); box.append(b); });
+    now.append(box);
   }
   chat.append(now);
 
@@ -282,26 +350,29 @@ function renderChat() {
   if (!mine.length) {
     const e = el("div", "empty-chat", "Diga o que você precisa. A mensagem vai para a sessão do Claude Code, que coloca este agente para trabalhar. Você vê o robô trabalhando e a resposta aparece aqui.");
     const sg = el("div", "suggest");
-    (SUGGEST[k] || []).forEach(s => { const b = el("button", null, s); b.type = "button"; b.addEventListener("click", () => { $("msg-input").value = s; $("msg-input").focus(); }); sg.append(b); });
+    (SUGGEST[k] || []).forEach(s => { const b = el("button", null, s); b.type = "button"; b.addEventListener("click", () => { state.drafts[k] = s; renderAll(); $("msg-input")?.focus(); }); sg.append(b); });
     e.append(sg); list.append(e);
   }
   for (const m of mine) { const b = el("div", "msg " + (m.de === "voce" ? "voce" : "agente"), m.texto); const tm = el("time", null, fmt(m.em) + (m.de === "voce" && m.entrega ? " · " + m.entrega : "")); b.append(tm); list.append(b); }
   chat.append(list); setTimeout(() => { list.scrollTop = list.scrollHeight; }, 0);
 
   const form = el("form", "composer");
-  const ta = el("textarea"); ta.id = "msg-input"; ta.dataset.agent = k; ta.maxLength = 1500; ta.value = keepDraft;
+  const ta = el("textarea"); ta.id = "msg-input"; ta.dataset.agent = k; ta.maxLength = 1500; ta.value = state.drafts[k] || "";
   ta.placeholder = "Escreva para " + INFO[k].name + "…"; ta.setAttribute("aria-label", "Mensagem para " + INFO[k].name);
   const row = el("div", "composer-row");
-  const hint = el("span", "hint", canSend === "available" ? "Vai direto para a sessão do Claude Code. Enter envia, Shift+Enter quebra a linha." : "A sessão do Claude Code não está ouvindo agora: a mensagem fica guardada e é lida quando você disser \"leia as mensagens do escritório\" na conversa.");
+  const hint = el("span", "hint", state.hint?.[k] || (canSend === "available" ? "Vai direto para a sessão do Claude Code. Enter envia, Shift+Enter quebra a linha." : "A sessão do Claude Code não está ouvindo agora: a mensagem fica guardada e é lida quando você disser \"leia as mensagens do escritório\" na conversa.")); hint.id = "composer-hint";
   const send = el("button", "send", "Enviar"); send.type = "submit";
   row.append(hint, send); form.append(ta, row); chat.append(form);
+  ta.addEventListener("input", () => { state.drafts[k] = ta.value; });
   ta.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); form.requestSubmit(); } });
   form.addEventListener("submit", async e => {
-    e.preventDefault(); const text = ta.value.trim(); if (!text || !db) return;
-    send.disabled = true;
+    e.preventDefault(); const text = (state.drafts[k] || ta.value).trim(); if (!text || !db) return;
+    // Limpa a caixa ANTES de gravar: a gravação redesenha a tela na hora.
+    state.drafts[k] = ""; ta.value = "";
+    const setHint = t => { state.hint = state.hint || {}; state.hint[k] = t; const h = $("composer-hint"); if (h) h.textContent = t; };
     const ref = db.collection("mensagens").doc();
     const msg = { agente: k, de: "voce", texto: text, em: new Date().toISOString(), entrega: "guardada" };
-    try { await ref.set(msg); ta.value = ""; } catch (err) { hint.textContent = "Não foi possível guardar a mensagem (" + err.code + ")."; send.disabled = false; return; }
+    try { await ref.set(msg); } catch (err) { state.drafts[k] = text; renderAll(); setHint("Não foi possível guardar a mensagem (" + err.code + "). O texto voltou para a caixa."); return; }
     if (comments) {
       try { canSend = await comments.canSendToClaude(); } catch { canSend = "off"; }
       if (canSend === "available") {
@@ -310,23 +381,104 @@ function renderChat() {
           const target = threads[k] ? { threadId: threads[k], text: body } : { anchor: await comments.anchorFor(document.querySelector('.station[data-agent="' + k + '"]') || $("chat")), text: body };
           const r = await comments.sendToClaude(target); threads[k] = r.threadId;
           await ref.update({ entrega: "enviada ao Claude" });
-        } catch (err) { hint.textContent = "Guardada, mas não foi enviada agora (" + (err.code || "erro") + "). Diga \"leia as mensagens do escritório\" na conversa."; }
+        } catch (err) { setHint("Guardada, mas não foi enviada agora (" + (err.code || "erro") + "). Diga \"leia as mensagens do escritório\" na conversa."); }
       }
     }
-    send.disabled = false;
   });
 }
 
-function renderAll() {
-  const active = document.activeElement?.id;
-  renderFloor(); renderChat();
-  if (active === "msg-input") $("msg-input")?.focus();
+function renderDeliveries() {
+  const n = state.entregas.length; $("n-deliv").textContent = n ? String(n) : "";
+  const office = state.view === "office";
+  $("floor").hidden = !office; $("view-deliveries").hidden = office;
+  $("tab-office").toggleAttribute("aria-current", office); $("tab-deliv").toggleAttribute("aria-current", !office);
+  if (office) $("tab-office").setAttribute("aria-current", "page"); else $("tab-deliv").setAttribute("aria-current", "page");
+  if (office) return;
+  const root = $("deliveries"); root.replaceChildren();
+  if (!n) { root.append(el("div", "empty-deliv", "Nenhuma entrega ainda. Quando um robô terminar um trabalho, ele aparece aqui para você ver, baixar e aprovar.")); return; }
+  for (const x of state.entregas) {
+    const c = el("button", "dcard"); c.type = "button";
+    const th = el("div", "dthumb");
+    const img = (x.itens || []).find(i => i.tipo === "imagem" && i.asset);
+    if (img) { const im = el("img"); im.src = blobUrl(img.asset); im.alt = ""; im.loading = "lazy"; th.append(im); }
+    else { const d = el("div", "doc", x.titulo || "Documento"); d.append(el("small", null, ((x.itens || []).length || 1) + " arquivo(s)")); th.append(d); }
+    const body = el("div", "dbody");
+    body.append(el("strong", null, x.titulo || "Entrega"), el("span", null, (INFO[x.agente]?.name || x.agente || "") + ", " + fmt(x.criada)));
+    const st = state.approvals[x.id]?.decisao === "aprovado" ? "aprovada" : state.approvals[x.id]?.decisao === "ajustar" ? "ajustar" : (x.status || "entregue");
+    body.append(el("span", "tag t-" + st, DSTATUS[st] || st));
+    c.append(th, body); c.addEventListener("click", () => openEntrega(x.id)); root.append(c);
+  }
 }
 
-renderAll();
+function openEntrega(id) { state.entrega = id; renderViewer(); }
+
+async function baixar(item, btn) {
+  if (!downloads) { btn.textContent = "Download indisponível aqui"; return; }
+  btn.disabled = true;
+  try {
+    let data;
+    if (item.tipo === "imagem") data = await (await fetch(blobUrl(item.asset))).blob();
+    else data = item.conteudo || "";
+    await downloads.save({ filename: item.arquivo || item.nome || "entrega.txt", data });
+  } catch (e) { btn.textContent = "Não foi possível baixar"; }
+  btn.disabled = false;
+}
+
+function renderViewer() {
+  const v = $("viewer"); const x = state.entregas.find(e => e.id === state.entrega);
+  if (!x) { v.hidden = true; v.replaceChildren(); return; }
+  v.hidden = false; v.replaceChildren();
+  const inner = el("div", "viewer-inner");
+  const head = el("div", "vhead"); const t = el("div");
+  t.append(el("h2", null, x.titulo || "Entrega"), el("p", null, (INFO[x.agente]?.name || x.agente || "") + ", " + fmt(x.criada) + (x.resumo ? ". " + x.resumo : "")));
+  const close = el("button", "close", "×"); close.type = "button"; close.setAttribute("aria-label", "Fechar entrega");
+  close.addEventListener("click", () => { state.entrega = null; renderViewer(); });
+  head.append(t, close); inner.append(head);
+  const dec = state.approvals[x.id];
+  const acts = el("div", "vactions");
+  if (dec) acts.append(el("span", "feedback", (dec.decisao === "aprovado" ? "Você aprovou" : "Você pediu ajuste") + " em " + fmt(dec.em) + "."));
+  else if (x.status === "aguardando_aprovacao" && db) {
+    const ok = el("button", "btn ok", "Aprovar"); ok.type = "button";
+    const fix = el("button", "btn", "Pedir ajuste"); fix.type = "button";
+    const decide = async d => { ok.disabled = fix.disabled = true; try { await db.collection("aprovacoes").doc(x.id).set({ decisao: d, comentario: "", em: new Date().toISOString(), tarefa: x.titulo || "" }); if (d === "ajustar" && x.agente && INFO[x.agente]) { state.drafts[x.agente] = "Ajuste em \"" + (x.titulo || "") + "\": "; state.entrega = null; renderViewer(); state.open = x.agente; renderAll(); $("msg-input")?.focus(); } } catch { ok.disabled = fix.disabled = false; } };
+    ok.addEventListener("click", () => decide("aprovado")); fix.addEventListener("click", () => decide("ajustar"));
+    acts.append(ok, fix);
+  }
+  if (x.agente && INFO[x.agente]) { const talk = el("button", "btn", "Falar com " + INFO[x.agente].name); talk.type = "button"; talk.addEventListener("click", () => { state.entrega = null; renderViewer(); state.open = x.agente; renderAll(); }); acts.append(talk); }
+  inner.append(acts);
+  for (const item of (x.itens || [])) {
+    const box = el("section", "item"); const row = el("div", "item-row");
+    row.append(el("strong", null, item.nome || "Arquivo"));
+    const dl = el("button", "btn", "Baixar"); dl.type = "button"; dl.addEventListener("click", () => baixar(item, dl)); row.append(dl);
+    box.append(row);
+    if (item.tipo === "imagem" && item.asset) { const im = el("img"); im.src = blobUrl(item.asset); im.alt = item.descricao || item.nome || ""; if (item.largura) { im.width = item.largura; im.height = item.altura; } box.append(im); }
+    else if (item.conteudo) {
+      const md = el("div", "md");
+      if (window.marked && window.DOMPurify) md.innerHTML = DOMPurify.sanitize(marked.parse(item.conteudo));
+      else md.textContent = item.conteudo;
+      md.querySelectorAll("a").forEach(a => { a.target = "_blank"; a.rel = "noopener"; });
+      box.append(md);
+    }
+    inner.append(box);
+  }
+  v.append(inner); v.scrollTop = 0;
+}
+
+function route() { state.view = location.hash === "#entregas" ? "deliveries" : "office"; renderAll(); }
+window.addEventListener("hashchange", route);
+document.addEventListener("keydown", e => { if (e.key === "Escape" && state.entrega) { state.entrega = null; renderViewer(); } });
+
+function renderAll() {
+  const active = document.activeElement?.id;
+  renderFloor(); renderDeliveries(); renderChat();
+  if (state.entrega) renderViewer();
+  if (active === "msg-input") { const t = $("msg-input"); if (t) { t.focus(); t.setSelectionRange(t.value.length, t.value.length); } }
+}
+
+route();
 
 (async () => {
-  [db, comments] = await Promise.all([window.claude?.use?.("db"), window.claude?.use?.("comments")]);
+  [db, comments, downloads] = await Promise.all([window.claude?.use?.("db"), window.claude?.use?.("comments"), window.claude?.use?.("downloads")]);
   const sync = $("sync");
   if (comments) { try { canSend = await comments.canSendToClaude(); } catch { canSend = "off"; } }
   if (!db) { sync.textContent = "O escritório ao vivo só funciona aberto no claude.ai, com a sua conta."; sync.className = "sync warn"; return; }
@@ -336,6 +488,7 @@ renderAll();
   db.collection("agentes").onSnapshot(s => { state.agents = Object.fromEntries(s.docs.map(d => [d.id, d.data()])); live(s.metadata); renderAll(); }, fail);
   db.collection("mensagens").orderBy("em", "asc").limit(1000).onSnapshot(s => { state.msgs = s.docs.map(d => ({ id: d.id, ...d.data() })); renderAll(); }, fail);
   db.collection("tarefas").orderBy("atualizada", "desc").limit(100).onSnapshot(s => { state.tasks = s.docs.map(d => ({ id: d.id, ...d.data() })); renderAll(); }, fail);
+  db.collection("entregas").orderBy("criada", "desc").limit(300).onSnapshot(s => { state.entregas = s.docs.map(d => ({ id: d.id, ...d.data() })); renderAll(); }, fail);
   db.collection("aprovacoes").onSnapshot(s => { state.approvals = Object.fromEntries(s.docs.map(d => [d.id, d.data()])); renderAll(); }, fail);
 })();
 </script>

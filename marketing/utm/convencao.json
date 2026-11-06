@@ -19,10 +19,15 @@
     "email": "E-mail (GA4: Email)",
     "referral": "Links de parceiros (GA4: Referral)",
     "sms": "SMS (GA4: SMS)",
-    "offline": "Materiais impressos/QR code"
+    "offline": "Material impresso com QR code. Não é canal padrão do GA4: criar grupo de canais personalizado 'Offline'. Aprovado pelo usuário em 06/11/2026.",
+    "whatsapp": "Links enviados por mensagem no WhatsApp (com utm_source=whatsapp o GA4 tende a classificar como Organic Social). Aprovado pelo usuário em 06/11/2026."
   },
   "campaign_formato": "<objetivo>-<produto>-<publico>-<aaaamm>  ex.: leads-protecao-familiar-sp-202611",
-  "obrigatorios": ["utm_source", "utm_medium", "utm_campaign"],
+  "obrigatorios": [
+    "utm_source",
+    "utm_medium",
+    "utm_campaign"
+  ],
   "parametros_dinamicos": {
     "meta": "utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}&utm_id={{campaign.id}}",
     "google": "utm_source=google&utm_medium=cpc&utm_campaign={_campanha}&utm_content={creative}&utm_term={keyword}&utm_id={campaignid}"

@@ -90,3 +90,21 @@ Quando chegar (ou quando o usuário disser "leia as mensagens do escritório": `
    `ArtifactComments`, para o fio não ficar sem resposta.
 Uma pergunta simples (sem produzir arquivo) pode ser respondida direto, como o agente,
 seguindo as regras do arquivo dele.
+
+
+## Publicar uma entrega no Escritório (sempre, ao fim de cada trabalho)
+
+O usuário quer receber as entregas no escritório ou na conversa, **não no GitHub**.
+1. **Imagens:** envie os PNG com a ferramenta `Artifact` (`url` do escritório, `asset: true`,
+   `file_paths`). Guarde o `id` de cada arquivo.
+2. **Ficha:** grave em `entregas/<id>` (ex.: `e-AAAA-MM-DD-<tema>`) com `ArtifactData`:
+   `titulo`, `agente`, `criada` (ISO UTC), `status` (`aguardando_aprovacao` quando precisa do
+   ok do usuário, senão `entregue`), `resumo` (1 ou 2 frases) e `itens`: para imagem
+   `{nome, tipo: "imagem", asset: <id>, arquivo, largura, altura, descricao}`; para texto
+   `{nome, tipo: "texto", arquivo, conteudo: <markdown>}` (CSV vai dentro de bloco de código).
+   Para documentos grandes, monte um JSON local e use `file_path`.
+3. **Conversa:** mostre as imagens ao usuário com `SendUserFile` e avise na conversa do robô
+   ("Sua entrega está na aba Entregas").
+4. As aprovações das entregas chegam em `aprovacoes/<id da entrega>`.
+5. Não faça commit da pasta `entregas/`. O Git guarda só a equipe: agentes, skills, regras,
+   marca, ferramentas e o código do escritório.

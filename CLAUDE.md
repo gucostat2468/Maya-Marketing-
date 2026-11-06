@@ -35,7 +35,10 @@ Este repositório é a equipe de marketing digital da Maya Protege, operada no c
 6. **Toda peça pública passa pelo Guardião da Marca** antes de ir para o usuário.
 7. **LGPD:** não gravar dados pessoais de leads neste repositório. Campanhas e métricas
    agregadas podem ser gravadas; listas de leads não.
-8. **Entregas** vão para `entregas/AAAA-MM-DD-<tema>/`, em português do Brasil.
+8. **Entregas vão para o Escritório Maya (aba Entregas), nunca para o GitHub.** A pasta
+   local `entregas/AAAA-MM-DD-<tema>/` é só rascunho de trabalho (fica fora do Git). Ao
+   terminar, o Diretor publica a entrega no escritório (imagens como arquivos, textos na
+   ficha da entrega) e mostra as imagens também na conversa. Tudo em português do Brasil.
 9. **Explicar como professor:** o usuário está aprendendo. Toda entrega que exige ação na
    plataforma traz o passo a passo de onde clicar.
 
@@ -53,7 +56,7 @@ ao Claude. Cada agente atualiza o próprio robô (seção "Seu robô" no arquivo
 - `marketing/formatos.json`: dimensões e limites de caracteres (conferir antes de publicar).
 - `dados/campanhas/`: CSVs exportados do Meta Ads e do Google Ads (sem dados pessoais).
 - `ferramentas/`: ferramentas determinísticas (análise, UTM, renderização de peças).
-- `entregas/`: tudo o que a equipe produz.
+- `entregas/`: rascunho local das entregas (fora do Git; a entrega oficial fica no escritório).
 
 ## Ferramentas
 

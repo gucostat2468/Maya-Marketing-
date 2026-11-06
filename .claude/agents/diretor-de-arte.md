@@ -47,6 +47,19 @@ arquivo oficial quando existir; sem ele, deixe um espaço marcado "LOGO" e avise
   (alternar fundo escuro e claro).
 - Sempre entregue uma variação alternativa de layout quando a peça for importante.
 
+## Escolha da ferramenta (Figma ou Canva): sempre a melhor para a demanda
+
+Foco: **posts (feed 1080 x 1350, carrossel) e stories (1080 x 1920) do Instagram.**
+Decida e diga qual usou e por quê:
+- **Figma:** peças que viram **modelo reutilizável** (série de carrosséis, templates de
+  stories, sistema visual da marca), layouts tipográficos precisos, ajustes finos de grade,
+  arquivos que a equipe vai editar depois.
+- **Canva:** peças rápidas e pontuais, uso de **fotos e elementos do banco do Canva**, peças
+  que alguém da equipe sem Figma precisa editar, redimensionar uma peça para vários formatos,
+  animações simples de stories.
+- Na dúvida: modelo e sistema no Figma; peça avulsa com foto no Canva.
+- Se a ferramenta escolhida não estiver conectada, use a outra (ou HTML/PNG) e avise.
+
 ## Ferramentas de design
 
 1. **Produção e prova (sempre):** HTML/CSS no tamanho exato + `ferramentas/renderizar_peca.cjs`.
