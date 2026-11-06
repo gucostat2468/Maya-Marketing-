@@ -1,0 +1,100 @@
+<script>
+/*
+ * Maya Protege: captura da origem do lead (GTM, tag "HTML personalizado").
+ * - Lê utm_source, utm_medium, utm_campaign, utm_content, utm_term, utm_id,
+ *   gclid, gbraid, wbraid e fbclid da URL.
+ * - Guarda o PRIMEIRO toque (cookie maya_ft, não é sobrescrito) e o ÚLTIMO toque
+ *   (cookie maya_lt), por 90 dias, no domínio do site.
+ * - Preenche campos ocultos dos formulários: <input type="hidden" name="utm_source">
+ *   (último toque) e name="ft_utm_source" (primeiro toque), e assim por diante.
+ * - Publica no dataLayer o evento "maya_origem_capturada".
+ * Disparo recomendado: "Initialization - All Pages", com a exigência de consentimento
+ * configurada na tag (Configurações avançadas > Configurações de consentimento).
+ * Escrito em ES5 para compatibilidade com qualquer navegador.
+ */
+(function () {
+  var KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id",
+              "gclid", "gbraid", "wbraid", "fbclid"];
+  var DAYS = 90;
+
+  function readCookie(name) {
+    var match = document.cookie.match(new RegExp("(?:^|; )" + name + "=([^;]*)"));
+    if (!match) return null;
+    try { return JSON.parse(decodeURIComponent(match[1])); } catch (e) { return null; }
+  }
+
+  function cookieDomain() {
+    var host = location.hostname;
+    if (host === "localhost" || /^[0-9.]+$/.test(host)) return "";
+    return "; domain=" + host.replace(/^www\./, "");
+  }
+
+  function writeCookie(name, value) {
+    var expires = new Date(Date.now() + DAYS * 864e5).toUTCString();
+    document.cookie = name + "=" + encodeURIComponent(JSON.stringify(value)) +
+      "; expires=" + expires + "; path=/" + cookieDomain() + "; SameSite=Lax" +
+      (location.protocol === "https:" ? "; Secure" : "");
+  }
+
+  function fromUrl() {
+    var params = {}, found = false, query = location.search.replace(/^\?/, "").split("&");
+    for (var i = 0; i < query.length; i++) {
+      var pair = query[i].split("=");
+      var key = decodeURIComponent(pair[0] || "").toLowerCase();
+      if (KEYS.indexOf(key) !== -1 && pair[1]) {
+        params[key] = decodeURIComponent(pair[1].replace(/\+/g, " ")).slice(0, 150);
+        found = true;
+      }
+    }
+    if (!found) return null;
+    params.landing_page = location.pathname.slice(0, 150);
+    params.captured_at = new Date().toISOString();
+    return params;
+  }
+
+  var touch = fromUrl();
+  if (touch) {
+    writeCookie("maya_lt", touch);
+    if (!readCookie("maya_ft")) writeCookie("maya_ft", touch);
+  }
+  var last = readCookie("maya_lt") || {};
+  var first = readCookie("maya_ft") || {};
+
+  function fill(root) {
+    var all = KEYS.concat(["landing_page"]);
+    for (var i = 0; i < all.length; i++) {
+      var key = all[i];
+      setField(root, key, last[key]);
+      setField(root, "ft_" + key, first[key]);
+    }
+  }
+
+  function setField(root, name, value) {
+    if (!value) return;
+    var inputs = (root || document).querySelectorAll('input[name="' + name + '"]');
+    for (var i = 0; i < inputs.length; i++) {
+      if (!inputs[i].value) inputs[i].value = value;
+    }
+  }
+
+  // Formulários que já existem, os que carregam depois (pop-ups) e no momento do envio.
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function () { fill(document); });
+  } else {
+    fill(document);
+  }
+  document.addEventListener("focusin", function (e) {
+    if (e.target && e.target.form) fill(e.target.form);
+  }, true);
+  document.addEventListener("submit", function (e) { fill(e.target); }, true);
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: "maya_origem_capturada",
+    maya_lt_source: last.utm_source || "(direto)",
+    maya_lt_medium: last.utm_medium || "(nenhum)",
+    maya_lt_campaign: last.utm_campaign || "(nenhuma)",
+    maya_ft_campaign: first.utm_campaign || "(nenhuma)"
+  });
+})();
+</script>

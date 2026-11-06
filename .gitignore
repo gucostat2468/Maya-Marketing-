@@ -24,3 +24,6 @@ frontend/.hallmark/
 !.vscode/settings.json
 .DS_Store
 Thumbs.db
+
+# Leads e dados pessoais nunca entram no repositório (LGPD)
+dados/leads/

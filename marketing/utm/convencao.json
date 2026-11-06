@@ -1,0 +1,30 @@
+{
+  "_sobre": "Padrão de UTMs da Maya Protege. Valores sempre minúsculos, sem acento, palavras separadas por hífen. Os mediums seguem o agrupamento de canais padrão do GA4 para o tráfego cair no canal certo.",
+  "sources": {
+    "facebook": "Anúncios e posts no Facebook",
+    "instagram": "Anúncios e posts no Instagram",
+    "google": "Google Ads (Pesquisa, Display, YouTube, PMax)",
+    "youtube": "Links em vídeos/descrições do YouTube (orgânico)",
+    "whatsapp": "Links enviados por WhatsApp",
+    "email": "Disparos de e-mail",
+    "linkedin": "Posts e anúncios no LinkedIn",
+    "parceiro": "Parceiros e indicações",
+    "qrcode": "Material impresso com QR code"
+  },
+  "mediums": {
+    "cpc": "Mídia paga de busca (GA4: Paid Search quando a source é buscador)",
+    "paid_social": "Mídia paga em redes sociais (GA4: Paid Social)",
+    "display": "Banners de display (GA4: Display)",
+    "organic_social": "Posts orgânicos em redes sociais (GA4: Organic Social)",
+    "email": "E-mail (GA4: Email)",
+    "referral": "Links de parceiros (GA4: Referral)",
+    "sms": "SMS (GA4: SMS)",
+    "offline": "Materiais impressos/QR code"
+  },
+  "campaign_formato": "<objetivo>-<produto>-<publico>-<aaaamm>  ex.: leads-protecao-familiar-sp-202611",
+  "obrigatorios": ["utm_source", "utm_medium", "utm_campaign"],
+  "parametros_dinamicos": {
+    "meta": "utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.name}}&utm_content={{ad.name}}&utm_term={{adset.name}}&utm_id={{campaign.id}}",
+    "google": "utm_source=google&utm_medium=cpc&utm_campaign={_campanha}&utm_content={creative}&utm_term={keyword}&utm_id={campaignid}"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "_aviso": "Especificações registradas a partir de conhecimento prévio em 2026-11, SEM consulta às fontes nesta data. Conferir na documentação oficial antes de publicar e atualizar 'verificado_em'.",
+  "verificado_em": null,
+  "meta": {
+    "fontes": ["https://www.facebook.com/business/ads-guide", "https://transparency.meta.com/policies/ad-standards/"],
+    "feed_quadrado": {"largura": 1080, "altura": 1080, "proporcao": "1:1"},
+    "feed_vertical": {"largura": 1080, "altura": 1350, "proporcao": "4:5"},
+    "stories_reels": {"largura": 1080, "altura": 1920, "proporcao": "9:16", "area_segura": "evitar texto nos 14% superiores e 20% inferiores"},
+    "texto_principal_recomendado": 125,
+    "titulo_recomendado": 40,
+    "descricao_recomendada": 30
+  },
+  "google": {
+    "fontes": ["https://support.google.com/google-ads/answer/7684791", "https://support.google.com/google-ads/answer/9823397"],
+    "pesquisa_responsiva": {"titulos_max": 15, "titulo_caracteres": 30, "descricoes_max": 4, "descricao_caracteres": 90, "caminho_caracteres": 15},
+    "display_responsivo": {
+      "paisagem": {"largura": 1200, "altura": 628, "proporcao": "1.91:1"},
+      "quadrado": {"largura": 1200, "altura": 1200, "proporcao": "1:1"},
+      "titulo_curto_caracteres": 30, "titulo_longo_caracteres": 90, "descricao_caracteres": 90
+    }
+  }
+}

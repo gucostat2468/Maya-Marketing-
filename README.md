@@ -1,13 +1,73 @@
 # Maya-marketing
 
-Plataforma **local** de inteligência de marketing da Maya Protege: aquisição, campanhas,
-crescimento social, leads, funil comercial e aprendizado contínuo. Roda no seu computador
-Windows, sem hospedagem, sem servidor remoto e sem domínio. Os dados ficam só na sua máquina.
+**Equipe de agentes de marketing digital da Maya Protege**, que trabalha aqui no
+claude.ai/code (nuvem) ou no VS Code. Você faz o pedido em português, o **Diretor de
+Marketing** distribui o trabalho para os especialistas e devolve o material pronto para você
+aprovar e publicar.
 
-> **Estado atual: Fase 1 (Fundação) concluída.** O painel funciona, mas ainda **não há dados
-> reais**: nenhum indicador é inventado. Veja [`docs/ROADMAP.md`](docs/ROADMAP.md).
+## A equipe
+
+| Área | Agente | O que entrega |
+|---|---|---|
+| Coordenação | **Diretor de Marketing** (`/diretor`) | Recebe o pedido, distribui, revisa e entrega |
+| Mídia paga | **Gestor de Meta Ads** | Estrutura, públicos, orçamento, testes A/B, otimização |
+| Mídia paga | **Gestor de Google Ads** | Campanhas, palavras-chave, negativas, lances, otimização |
+| Growth | **Estrategista de Growth** | Briefing, plano de canais e orçamento, landing pages, experimentos |
+| Conteúdo e marca | **Social Media** | Linhas editoriais, calendário, análise orgânica |
+| Conteúdo e marca | **Copywriter** | Textos de anúncio, títulos, CTAs, variações A/B |
+| Conteúdo e marca | **Diretor de Arte** | Peças em PNG no tamanho exato de cada formato |
+| Conteúdo e marca | **Guardião da Marca** | Revisão final: marca, promessas, políticas, LGPD |
+| Dados e mensuração | **Analista de Mensuração** (`/gtm`) | GTM, GA4, pixel, conversões, captura de origem do lead |
+| Dados e mensuração | **Especialista em UTM** (`/utm`) | Links rastreáveis e padrão de UTMs |
+| Dados e mensuração | **Analista de Campanhas** (`/analisar-campanhas`) | CPC, CTR, CPL, CPA, ROAS, ROI e qual campanha performa melhor |
+| Integração comercial | **Analista de Funil** | Lead qualificado, SLA com vendas, devolutiva de vendas |
+
+## Como usar no claude.ai/code
+
+1. Abra claude.ai/code e inicie uma sessão com o repositório **Maya-Marketing-**, no branch
+   `claude/maya-marketing-fase-1` (até ele ser mesclado na `main`).
+2. Escreva o pedido normalmente, por exemplo: *"Crie uma campanha de leads no Meta Ads para o
+   produto X em São Paulo, R$ 50 por dia"*. Ou use um atalho:
+   - `/diretor` para qualquer pedido amplo;
+   - `/analisar-campanhas` e anexe os CSVs exportados do Meta/Google;
+   - `/utm` para gerar ou auditar links;
+   - `/gtm` para rastreamento e conversões.
+3. As entregas aparecem em `entregas/AAAA-MM-DD-<tema>/`. Peça para a sessão fazer commit e
+   push para guardar: a sessão na nuvem é temporária.
+
+**Antes da primeira campanha**, preencha a tabela "A confirmar" em
+[`marca/marca.md`](marca/marca.md) (produtos, regiões, público, tom, proibições) e envie os
+arquivos oficiais do logotipo. Sem isso, a equipe se recusa a afirmar qualquer coisa sobre
+os produtos, de propósito.
+
+## Ferramentas testadas que os agentes usam
+
+| Ferramenta | Função | Testes |
+|---|---|---|
+| `ferramentas/analisar_campanhas.py` | Lê CSVs do Meta e do Google (formato BR), calcula métricas, ranking com margem de confiança e diagnósticos | 12 |
+| `ferramentas/utm.py` | Gera, padroniza e audita UTMs | 5 |
+| `marketing/gtm/captura-origem.html` | Script do GTM que guarda a origem do lead e preenche campos ocultos | 7 (navegador real) |
+| `ferramentas/renderizar_peca.cjs` | Exporta peças HTML em PNG no tamanho exato | verificado |
+
+```bash
+python3 -m unittest discover -s ferramentas/tests -t .
+node ferramentas/tests/gtm/teste_captura_origem.cjs
+```
+
+## Limites, de propósito
+
+- A equipe **não publica, não ativa campanhas e não gasta**: entrega pronto e você aprova.
+- Sem acesso às contas de Meta, Google Ads e GTM: os dados entram por exportação CSV.
+- Números só saem das ferramentas, nunca de "cálculo de cabeça" do modelo.
 
 ---
+
+## Anexo: aplicativo local (Fase 1, pausado)
+
+O backend e o frontend abaixo foram a primeira fundação do projeto. Estão funcionais e
+testados, mas pausados: o foco passou a ser a equipe de agentes.
+
+
 
 ## 1. O que você precisa instalar (uma única vez)
 
