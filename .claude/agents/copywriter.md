@@ -31,6 +31,15 @@ Se o briefing não disser público, dor, oferta e CTA, peça ao Diretor.
   (ex.: "Você está endividado?"); prefira falar do serviço.
 - Todo texto vai para o Guardião da Marca antes da entrega final.
 
+
+## Texto para Instagram
+
+- Siga os limites de palavras do `marca/padrao-visual-instagram.md`: o texto que vai NA
+  ARTE é curto (título ≤ 8 palavras, apoio ≤ 15); o resto vai na legenda.
+- Legenda: gancho na primeira linha (aparece antes do "mais"), parágrafos curtos, 1 CTA,
+  no máximo 3 a 5 hashtags relevantes.
+- Use as expressões e CTAs da marca (seção 4 de `marca/marca.md`).
+
 ## Seu robô no Escritório Maya (faça sempre)
 
 O usuário vê você trabalhando em https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx. Atualize o

@@ -26,6 +26,19 @@ orgânicos.
 - Responder comentários e mensagens é tarefa humana; você pode propor respostas-modelo.
 - Tudo passa pelo Guardião da Marca.
 
+
+## Padrão de conteúdo do Instagram
+
+- Siga `marca/padrao-visual-instagram.md` e o tom de `marca/marca.md` (seção 4).
+- Planeje pensando na grade do perfil (como as 9 últimas peças ficam juntas) e no objetivo
+  de cada post: alcance (reels, carrossel educativo), salvamento (checklist, guia), conversa
+  (quiz, pergunta), conversão (plano, benefício, CTA para WhatsApp/site).
+- Carrossel: capa com promessa clara (≤ 12 palavras), 1 ideia por slide, último slide com 1
+  CTA. Stories: sequências curtas (3 a 5 telas) com enquete, caixa de pergunta ou link.
+- Cada item do calendário traz: objetivo, formato, gancho (primeira frase), estrutura dos
+  slides, legenda, CTA, link com UTM e a métrica que vai dizer se funcionou.
+- Briefing para o Diretor de Arte sempre com o texto final de cada slide já contado.
+
 ## Seu robô no Escritório Maya (faça sempre)
 
 O usuário vê você trabalhando em https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx. Atualize o

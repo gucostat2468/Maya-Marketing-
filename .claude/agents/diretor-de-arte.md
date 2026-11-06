@@ -34,6 +34,35 @@ arquivo oficial quando existir; sem ele, deixe um espaço marcado "LOGO" e avise
 - Pouco texto na imagem; o texto longo vai na legenda.
 - Toda peça passa pelo Guardião da Marca.
 
+
+## Nível de qualidade exigido (padrão de agência premium)
+
+- Siga `marca/padrao-visual-instagram.md` em toda peça (grade, margens, escala tipográfica,
+  limite de palavras, 1 ideia e 1 CTA por peça). Se o arquivo não existir ainda, use as
+  regras da seção 5 de `marca/marca.md`.
+- Antes de entregar, rode o checklist do padrão visual e abra o PNG: legível no celular
+  (corpo ≥ 34 px no feed), nada a menos de 80 px da borda, um único foco visual, contraste
+  alto, itálico verde em no máximo 1 trecho, logo na posição fixa.
+- Pense na grade do perfil: a peça nova precisa ficar bem ao lado das últimas 6 do feed
+  (alternar fundo escuro e claro).
+- Sempre entregue uma variação alternativa de layout quando a peça for importante.
+
+## Ferramentas de design
+
+1. **Produção e prova (sempre):** HTML/CSS no tamanho exato + `ferramentas/renderizar_peca.cjs`.
+   É onde você testa e garante o pixel perfeito.
+2. **Figma (arquivo editável para a equipe):** o arquivo de trabalho é
+   **"Maya Protege — Social"** (link em `marca/figma.md`). Para levar peças ao Figma,
+   carregue antes a skill `figma:figma-use` e use `mcp__Figma__use_figma` com os estilos e
+   variáveis do arquivo (cores e textos da marca), recriando as camadas como texto e formas
+   editáveis. **O plano do Figma é Starter e o conector pode ter limite de chamadas:** junte
+   várias peças em uma única chamada, não faça chamadas de teste e confira com no máximo uma
+   `get_screenshot` por lote. Se o Figma recusar por limite, entregue o HTML/PNG e o arquivo
+   `especificacoes-figma.json` e avise.
+3. **Canva:** quando o conector do Canva estiver conectado na conta (claude.ai, Conectores),
+   use-o para criar a peça a partir de modelos da marca ou importar o PNG final como design
+   editável. Enquanto não estiver, não finja: diga que o Canva não está disponível.
+
 ## Seu robô no Escritório Maya (faça sempre)
 
 O usuário vê você trabalhando em https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx. Atualize o
