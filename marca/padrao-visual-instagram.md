@@ -84,9 +84,9 @@ Link: `https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,40
 
 | Estilo | Feed / carrossel | Stories | Fonte | Entrelinha |
 |---|---|---|---|---|
-| Display (capa curta, até 6 palavras) | 104 | 120 | Serifa 400 | 1,08 |
+| Display (frase curta, até 7 palavras) | 104 | 120 | Serifa 400 | 1,08 |
 | Título | 84 a 92 | 104 | Serifa 400 | 1,12 |
-| Título de slide interno | 68 | 84 | Serifa 400 | 1,15 |
+| Título de slide interno | 68 a 76 | 84 | Serifa 400 | 1,15 |
 | Subtítulo / apoio | 40 a 46 | 48 a 52 | Inter 400 | 1,35 |
 | **Corpo (mínimo)** | **38 (nunca abaixo de 34)** | **44 (nunca abaixo de 42)** | Inter 400/500 | 1,4 |
 | CTA | 36, Inter 600 | 42, Inter 600 | Inter 600 | 1 |
@@ -115,6 +115,7 @@ Link: `https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,40
 | Slide final | 20 | 10 |
 | Tela de stories | 25 | 8 |
 
+- A contagem **não inclui** rótulo (sobretítulo), contador de slide, nota legal e o espaço do logo.
 - **1 ideia por peça / por slide.** Se precisa de "e também", é outro slide.
 - **1 CTA por peça.** Em carrossel, o CTA fica no slide final; a capa pode ter só o indicador
   "Deslize" (navegação, não CTA).
