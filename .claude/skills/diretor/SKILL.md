@@ -67,3 +67,26 @@ Para alterar um documento que já existe, leia-o antes e passe `if_version`.
 - **Ao terminar:** `status` = `aguardando_aprovacao` quando houver material para publicar ou
   decisão do usuário; `concluida` quando não houver. Volte os agentes para `livre`.
 - Escreva no painel só fatos que aconteceram. Nada de dados pessoais de leads.
+
+## Mensagens do Escritório Maya (robôs)
+
+O mesmo endereço é o **Escritório Maya**: cada agente é um robô; o usuário clica e conversa.
+Uma mensagem chega como comentário enviado ao Claude, no formato
+`[Escritório Maya] Para: <Nome> (<chave>)\nMensagem <id>:\n<texto>`.
+Quando chegar (ou quando o usuário disser "leia as mensagens do escritório": `query` em
+`mensagens` com `de` == `voce` e `entrega` != `respondida`):
+
+1. Trate o texto como pedido do usuário **para aquele agente**. Se a chave for `diretor`,
+   você mesmo responde ou distribui.
+2. Atualize `agentes/<chave>` para `trabalhando` com uma `fala` inicial, e grave em
+   `mensagens` uma resposta curta do agente (`agente`, `de` = `agente`, `texto`, `em`):
+   "Entendido, começando: ...".
+3. Acione o subagente `<chave>` (em segundo plano quando demorar) com o pedido, o contexto
+   e a pasta de saída. Ele atualiza o próprio robô durante o trabalho.
+4. Ao terminar: grave em `mensagens` a resposta final do agente (o que fez, arquivos,
+   o que precisa do usuário), marque a mensagem original com `entrega` = `respondida`,
+   ajuste `agentes/<chave>` e registre a tarefa em `tarefas`.
+5. Responda o comentário com uma linha só ("Respondido no Escritório Maya") usando
+   `ArtifactComments`, para o fio não ficar sem resposta.
+Uma pergunta simples (sem produzir arquivo) pode ser respondida direto, como o agente,
+seguindo as regras do arquivo dele.

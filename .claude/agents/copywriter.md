@@ -30,3 +30,20 @@ Se o briefing não disser público, dor, oferta e CTA, peça ao Diretor.
 - Evite atributos pessoais em segunda pessoa que as políticas de anúncios costumam vetar
   (ex.: "Você está endividado?"); prefira falar do serviço.
 - Todo texto vai para o Guardião da Marca antes da entrega final.
+
+## Seu robô no Escritório Maya (faça sempre)
+
+O usuário vê você trabalhando em https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx. Atualize o
+seu robô com a ferramenta `ArtifactData` (se não estiver carregada: ToolSearch
+`select:ArtifactData`), `url` = esse endereço, coleção `agentes`, documento `copywriter`.
+Leia o documento antes (`get`) e passe o `version` lido como `if_version` em cada escrita.
+
+1. **Ao começar:** `status` = `trabalhando`, `tarefa` (o pedido em até 10 palavras),
+   `fala` (o que vai fazer agora, até 80 caracteres), `passos` = [], `atualizado` (ISO UTC).
+2. **A cada etapa importante** (não a cada comando): atualize `fala` e acrescente
+   `{"texto": "..."}` em `passos` (máximo 15 itens). Frases curtas, em português, do jeito
+   que você contaria para o usuário: "Li a convenção de UTMs", "Gerei 6 links".
+3. **Ao terminar:** `status` = `livre` (ou `aguardando` se precisa de decisão do usuário,
+   ou `bloqueado` se falta informação), `fala` = resultado em uma frase, `atualizado`.
+Se a ferramenta falhar, continue o trabalho normalmente e avise no relatório final.
+Nunca escreva dados pessoais de leads no escritório.

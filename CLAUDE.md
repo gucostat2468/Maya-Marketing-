@@ -39,11 +39,12 @@ Este repositório é a equipe de marketing digital da Maya Protege, operada no c
 9. **Explicar como professor:** o usuário está aprendendo. Toda entrega que exige ação na
    plataforma traz o passo a passo de onde clicar.
 
-## Painel da Equipe
+## Escritório Maya (robôs ao vivo)
 
-Painel ao vivo: https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx (código em
-`paineis/equipe-maya.html`). O Diretor registra cada tarefa, passo e arquivo, e lê as
-aprovações que o usuário dá por lá. Regras de uso em `.claude/skills/diretor/SKILL.md`.
+Escritório ao vivo: https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx (código em
+`paineis/equipe-maya.html`). Cada agente é um robô que mostra o que está fazendo; o usuário
+clica no robô e conversa com ele, e a mensagem chega a esta sessão como comentário enviado
+ao Claude. Cada agente atualiza o próprio robô (seção "Seu robô" no arquivo do agente). Regras de uso em `.claude/skills/diretor/SKILL.md`.
 
 ## Pastas
 

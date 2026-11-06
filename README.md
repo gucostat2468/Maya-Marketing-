@@ -22,12 +22,12 @@ aprovar e publicar.
 | Dados e mensuração | **Analista de Campanhas** (`/analisar-campanhas`) | CPC, CTR, CPL, CPA, ROAS, ROI e qual campanha performa melhor |
 | Integração comercial | **Analista de Funil** | Lead qualificado, SLA com vendas, devolutiva de vendas |
 
-## Painel da Equipe
+## Escritório Maya (robôs ao vivo)
 
-**https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx**: mostra ao vivo o que cada agente está
-fazendo, o passo a passo de cada tarefa, os arquivos gerados e o que espera sua aprovação
-(com botões Aprovar e Pedir ajuste). Você conversa com a equipe no chat do Claude Code; o
-painel é onde você acompanha.
+**https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx**: os 12 agentes como robôs nas mesas,
+animados conforme o que estão fazendo (digitando, levantando a mão quando precisam de você,
+olhos vermelhos quando travam). Clique em um robô para ver o passo a passo dele e conversar:
+a mensagem vai para a sessão do Claude Code, que coloca aquele agente para trabalhar.
 
 ## Como usar no claude.ai/code
 
