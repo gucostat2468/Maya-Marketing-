@@ -1,0 +1,12 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: custom (brand: Maya Protege, user-specified greens)
+ * paper: oklch(98.6% 0.004 165) · accent: oklch(50% 0.12 162) · display: IBM Plex Sans · body: IBM Plex Sans
+ * nav: deep-green sidebar, grouped, collapses to a menu under 60rem · signature: the KPI ledger where every figure opens its formula and source · states: loading, empty, error, full, offline
+ * axes: tinted-white/plex/emerald · posture: dense workbench · contrast: pass · v2.0.0 */
+/* waive 26b: :active states live in Tailwind utilities (active:bg-*) on Button and nav, which the CSS-only lint cannot read */
+/* Hallmark · pre-emit critique: P3 H3 E4 S4 R3 V4 · weakest: H, the empty dashboard has no figures yet; the coverage notice carries the hierarchy and points to the one action */
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./base.css";
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/500.css";
+@import "@fontsource/ibm-plex-sans/600.css";

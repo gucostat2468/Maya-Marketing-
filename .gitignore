@@ -1,0 +1,26 @@
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+backend/.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/*.tsbuildinfo
+frontend/.hallmark/
+
+# Dados locais NUNCA entram no Git (ficam em %LOCALAPPDATA%\MayaMarketing)
+*.db
+*.db-wal
+*.db-shm
+*.log
+
+# Editor / SO
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db

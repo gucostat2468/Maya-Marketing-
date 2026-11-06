@@ -1,0 +1,61 @@
+/* Design tokens da Maya-marketing. Toda cor e toda fonte da interface passa por aqui.
+ * Paleta da identidade Maya Protege: verde institucional, esmeralda, verde profundo,
+ * branco e neutros levemente esverdeados. O verde de destaque marca só: a ação
+ * principal, a seleção atual e estados. Nada decorativo. */
+
+@theme static {
+  --color-*: initial; /* remove a paleta padrão do Tailwind: só os tokens da marca existem */
+
+  --color-paper: oklch(98.6% 0.004 165);
+  --color-paper-2: oklch(96.4% 0.007 165);
+  --color-paper-3: oklch(92.8% 0.011 165);
+  --color-ink: oklch(23% 0.028 168);
+  --color-ink-2: oklch(36% 0.026 168);
+  --color-muted: oklch(48% 0.02 168);
+  --color-rule: oklch(89.5% 0.01 165);
+  --color-rule-strong: oklch(80% 0.014 165);
+  --color-field-edge: oklch(60% 0.016 168); /* borda de campos: contraste mínimo de 3:1 */
+
+  --color-accent: oklch(50% 0.12 162);        /* verde institucional (ação principal) */
+  --color-accent-strong: oklch(43% 0.11 163); /* hover/pressionado */
+  --color-accent-ink: oklch(99% 0.004 165);   /* texto sobre o verde */
+  --color-accent-soft: oklch(94.5% 0.03 162); /* seleção, fundos de estado */
+  --color-emerald: oklch(62% 0.14 160);       /* verde esmeralda (realce em fundo escuro) */
+
+  --color-deep: oklch(26% 0.048 166);         /* verde profundo (sidebar) */
+  --color-deep-2: oklch(32% 0.055 165);
+  --color-deep-ink: oklch(95% 0.012 165);
+  --color-deep-muted: oklch(76% 0.03 165);
+
+  --color-focus: oklch(55% 0.14 160);
+  --color-focus-on-deep: oklch(82% 0.13 160);
+
+  --color-warning: oklch(48% 0.1 70);
+  --color-warning-soft: oklch(95.5% 0.035 85);
+  --color-error: oklch(50% 0.17 27);
+  --color-error-soft: oklch(95.5% 0.025 27);
+  --color-success: oklch(46% 0.11 155);
+
+  --font-*: initial;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-display: "IBM Plex Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace; /* só caminhos e códigos técnicos */
+
+  --radius-control: 6px;
+  --radius-card: 8px;
+  --radius-pill: 999px;
+}
+
+:root {
+  /* Escala tipográfica fixa (razão 1.2) para telas de aplicação. */
+  --text-xs: 0.75rem; --text-sm: 0.875rem; --text-md: 1rem; --text-lg: 1.2rem;
+  --text-xl: 1.44rem; --text-2xl: 1.728rem;
+  --space-3xs: 2px; --space-2xs: 4px; --space-xs: 8px; --space-sm: 12px; --space-md: 16px;
+  --space-lg: 24px; --space-xl: 40px; --space-2xl: 64px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-micro: 120ms; --dur-short: 220ms;
+  --container: 1440px; --gutter: 32px;
+  --sidebar-width: 280px;
+  --control-h: 36px;
+  --z-sticky: 200; --z-drawer: 400; --z-toast: 500;
+}

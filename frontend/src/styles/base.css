@@ -1,0 +1,40 @@
+/* Regras-base (Hallmark Floor): overflow, foco visível, movimento reduzido, números tabulares. */
+/* Em @layer base: as classes utilitárias do Tailwind (layer utilities) têm prioridade. */
+@layer base {
+*, *::before, *::after { box-sizing: border-box; }
+html, body { overflow-x: clip; }
+html { scrollbar-color: var(--color-rule-strong) var(--color-paper); }
+body {
+  margin: 0; background: var(--color-paper); color: var(--color-ink);
+  font-family: var(--font-body); font-size: var(--text-md); line-height: 1.5;
+  -webkit-font-smoothing: antialiased; caret-color: var(--color-accent);
+}
+::selection { background: color-mix(in oklab, var(--color-accent) 22%, transparent); color: var(--color-ink); }
+:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+.on-deep :focus-visible { outline-color: var(--color-focus-on-deep); }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+h1, h2, h3 { margin: 0; font-family: var(--font-display); font-weight: 600; font-synthesis: none; overflow-wrap: break-word; min-width: 0; text-wrap: balance; }
+p { margin: 0; text-wrap: pretty; }
+svg { display: block; }
+[hidden] { display: none !important; }
+button, input, select, textarea { font: inherit; }
+.num, td.num { font-variant-numeric: tabular-nums; }
+/* Tabelas: abaixo de 40rem cada linha vira um bloco rotulado (nenhuma coluna fica fora da tela). */
+@media (max-width: 40rem) {
+  .table-stack, .table-stack tbody, .table-stack tr, .table-stack td { display: block; width: 100%; min-width: 0; }
+  .table-stack thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .table-stack tr { padding-block: var(--space-sm); }
+  .table-stack td { padding-block: var(--space-3xs); text-align: left; }
+  .table-stack td[data-label]::before { content: attr(data-label); display: block; font-size: var(--text-xs); color: var(--color-muted); }
+}
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* Skeleton de carregamento: pulsa só a opacidade. */
+.skeleton { background: var(--color-paper-3); border-radius: var(--radius-control); animation: skeleton-pulse 1.4s var(--ease-out) infinite alternate; }
+@keyframes skeleton-pulse { from { opacity: 1; } to { opacity: 0.55; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+code, kbd, pre { font-family: var(--font-mono); font-size: 0.875em; }
+}
