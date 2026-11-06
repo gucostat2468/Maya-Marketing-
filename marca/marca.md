@@ -104,9 +104,13 @@ Detalhes de carência, dependentes, abrangência e exclusões: **ver "Saiba Mais
   Funerário: Iremos te chamar para passar mais informações"), campos **Nome completo** e
   **Telefone**, botão "Quero Saber Mais!".
 - **WhatsApp:** botão flutuante em todas as páginas e "Falar no WhatsApp".
-- **Quiz com assistente virtual:** `https://mayaprotege.com.br/quiz` (print de 06/11/2026). Um
-  "Assistente virtual" da Maya Protege pede nome e dados "para nossa equipe falar com você
-  pelo WhatsApp". É um ponto de captação de lead em conversa (sem formulário clássico).
+- **Assistente virtual no site** (print de 06/11/2026, em mayaprotege.com.br): uma janela
+  "Maya Protege, Assistente virtual" pede nome e dados "para nossa equipe falar com você pelo
+  WhatsApp". É captação de lead em conversa. **Não existe página /quiz** (veio de um modelo do
+  Meta AI, não do site).
+- **WhatsApp oficial:** https://wa.me/5511945524233 (+55 11 94552-4233), informado pelo usuário
+  em 06/11/2026. Link de wa.me abre o WhatsApp direto e **não carrega UTM**: para saber a origem,
+  use o texto pré-preenchido com um código (ver o modelo de UTM).
 - **App:** contratação e gestão (links da bio: site + 1 outro link, a confirmar qual).
 - **Instagram @maya.protege** (06/11/2026): 44 posts, 80 seguidores, destaques PLANOS,
   BENEFÍCIOS, 24h, DÚVIDAS, SOBRE. Relação com o perfil "Grupo Maya" (@grupomayabr): a
