@@ -22,6 +22,13 @@ aprovar e publicar.
 | Dados e mensuração | **Analista de Campanhas** (`/analisar-campanhas`) | CPC, CTR, CPL, CPA, ROAS, ROI e qual campanha performa melhor |
 | Integração comercial | **Analista de Funil** | Lead qualificado, SLA com vendas, devolutiva de vendas |
 
+## Painel da Equipe
+
+**https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx**: mostra ao vivo o que cada agente está
+fazendo, o passo a passo de cada tarefa, os arquivos gerados e o que espera sua aprovação
+(com botões Aprovar e Pedir ajuste). Você conversa com a equipe no chat do Claude Code; o
+painel é onde você acompanha.
+
 ## Como usar no claude.ai/code
 
 1. Abra claude.ai/code e inicie uma sessão com o repositório **Maya-Marketing-**, no branch

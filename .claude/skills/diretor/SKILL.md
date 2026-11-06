@@ -44,3 +44,26 @@ um briefing completo (eles não veem esta conversa).
 - Seja crítico: se o pedido do usuário tiver um risco (orçamento pulverizado, meta irreal,
   medir só CPL), diga e proponha alternativa.
 - Ao final, registre em `entregas/<pasta>/decisoes.md` o que foi decidido e por quê.
+
+## Painel da Equipe (obrigatório em toda tarefa)
+
+O usuário acompanha a equipe em **https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx**.
+Atualize-o com a ferramenta `ArtifactData` (carregue com ToolSearch `select:ArtifactData`),
+sempre com `url` = esse endereço e usando `batch` quando escrever mais de um documento.
+Para alterar um documento que já existe, leia-o antes e passe `if_version`.
+
+- **No início de cada conversa:** leia a coleção `aprovacoes` (`list`). Cada documento tem o
+  id da tarefa, `decisao` (`aprovado` ou `ajustar`) e `comentario`. Trate como decisão do
+  usuário, aplique e atualize a tarefa correspondente.
+- **Ao criar uma tarefa:** documento em `tarefas` com id `t-AAAA-MM-DD-<tema>` e os campos
+  `titulo`, `agente` (chave do responsável principal), `participantes` (chaves),
+  `status` (`na_fila`, `em_andamento`, `aguardando_aprovacao`, `concluida`, `bloqueada`),
+  `criada`, `atualizada` (ISO 8601 UTC), `resumo`, `passos` ([{`em`, `texto`}]),
+  `arquivos` (caminhos no repositório) e, se precisar do usuário, `pendencia`.
+- **A cada agente acionado ou concluído:** acrescente um passo curto e factual em `passos`,
+  atualize `atualizada` e o documento do agente em `agentes` (id = nome do arquivo do
+  agente, ou `diretor`): `status` (`livre`, `trabalhando`, `aguardando`, `bloqueado`),
+  `tarefa` (texto curto), `atualizado`.
+- **Ao terminar:** `status` = `aguardando_aprovacao` quando houver material para publicar ou
+  decisão do usuário; `concluida` quando não houver. Volte os agentes para `livre`.
+- Escreva no painel só fatos que aconteceram. Nada de dados pessoais de leads.

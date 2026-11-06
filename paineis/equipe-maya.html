@@ -1,0 +1,340 @@
+<title>Equipe Maya</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap">
+<style>
+/* Layout: sala de controle. Faixa de estado no topo, fila de aprovação, grade da equipe por área, registro de atividades. */
+:root {
+  --bg: #f4f3ee;
+  --surface: #ffffff;
+  --surface-2: #ecebe4;
+  --line: #d9d7cd;
+  --fg: #171a18;
+  --muted: #5d625e;
+  --gold: #8a6410;
+  --gold-soft: #f6ecd2;
+  --green: #1d7a45;
+  --green-soft: #ddf0e3;
+  --red: #a8322a;
+  --red-soft: #f7e1de;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #101311; --surface: #181c19; --surface-2: #20251f; --line: #2e342f;
+    --fg: #f1efe8; --muted: #a3a89f; --gold: #e2b44a; --gold-soft: #33290f;
+    --green: #4fc77f; --green-soft: #12301e; --red: #f08a7f; --red-soft: #3a1714;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #101311; --surface: #181c19; --surface-2: #20251f; --line: #2e342f;
+  --fg: #f1efe8; --muted: #a3a89f; --gold: #e2b44a; --gold-soft: #33290f;
+  --green: #4fc77f; --green-soft: #12301e; --red: #f08a7f; --red-soft: #3a1714;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 64px;
+}
+.wrap { max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+h1, h2, h3 { font-family: var(--display); margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: 20px; font-weight: 700; }
+p { margin: 0; }
+button, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+header { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+.brand { display: flex; flex-direction: column; gap: 6px; }
+.brand small { color: var(--muted); font-size: 14px; }
+.brand h1 span { color: var(--gold); }
+.counters { display: flex; flex-wrap: wrap; gap: 8px; }
+.counter { display: flex; align-items: baseline; gap: 6px; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); font-size: 14px; color: var(--muted); }
+.counter b { font-family: var(--display); font-size: 22px; color: var(--fg); font-variant-numeric: tabular-nums; }
+.sync { font-size: 13px; color: var(--muted); width: 100%; }
+.sync.warn { color: var(--red); }
+
+.section-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.section-head p { color: var(--muted); font-size: 14px; }
+
+.pill { display: inline-flex; align-items: center; white-space: nowrap; padding: 2px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 600; border: 1px solid transparent; }
+.s-livre { background: var(--surface-2); color: var(--muted); }
+.s-trabalhando, .s-em_andamento { background: var(--green-soft); color: var(--green); }
+.s-aguardando, .s-aguardando_aprovacao { background: var(--gold-soft); color: var(--gold); }
+.s-bloqueado, .s-bloqueada { background: var(--red-soft); color: var(--red); }
+.s-concluida { background: var(--surface-2); color: var(--fg); border-color: var(--line); }
+.s-na_fila { background: var(--surface-2); color: var(--muted); border-color: var(--line); }
+
+/* Aprovações */
+.approvals { display: flex; flex-direction: column; gap: 10px; }
+.approval { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px 16px; align-items: start; padding: 16px; border: 1px solid var(--gold); border-left-width: 4px; border-radius: 8px; background: var(--surface); }
+.approval h3 { font-size: 16px; }
+.approval .meta { color: var(--muted); font-size: 13px; }
+.approval .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.approval textarea { grid-column: 1 / -1; width: 100%; min-height: 64px; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); resize: vertical; }
+.btn { min-height: 36px; padding: 6px 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); cursor: pointer; font-weight: 600; font-size: 14px; }
+.btn:hover { background: var(--surface-2); }
+.btn.primary { background: var(--green); border-color: var(--green); color: var(--bg); }
+.btn.primary:hover { filter: brightness(1.08); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
+.decided { grid-column: 1 / -1; font-size: 13px; color: var(--green); }
+
+/* Equipe */
+.areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 20px; }
+.area h3 { font-family: var(--body); font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 8px; }
+.agents { display: flex; flex-direction: column; gap: 8px; }
+.agent { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; width: 100%; text-align: left; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; }
+.agent:hover { border-color: var(--muted); }
+.agent[aria-pressed="true"] { border-color: var(--gold); box-shadow: inset 0 0 0 1px var(--gold); }
+.agent .name { font-weight: 600; }
+.agent .doing { grid-column: 1 / -1; color: var(--muted); font-size: 13px; overflow-wrap: anywhere; }
+
+/* Atividade */
+.filter-note { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.link-btn { background: none; border: none; padding: 0; color: var(--gold); cursor: pointer; text-decoration: underline; text-underline-offset: 3px; font-weight: 600; }
+.feed { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.task { border-bottom: 1px solid var(--line); }
+.task summary { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; padding: 14px 4px; cursor: pointer; }
+.task summary::-webkit-details-marker { display: none; }
+.task .title { font-weight: 600; }
+.task .sub { grid-column: 1 / -1; color: var(--muted); font-size: 13px; }
+.task .body { padding: 0 4px 16px; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; }
+.steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; border-left: 2px solid var(--line); }
+.steps li { padding-left: 14px; position: relative; font-size: 14px; }
+.steps li::before { content: ""; position: absolute; left: -6px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--surface); border: 2px solid var(--green); }
+.steps time { display: block; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.files h4 { margin: 0 0 6px; font-size: 13px; color: var(--muted); font-weight: 600; }
+.files ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.files a { color: var(--fg); overflow-wrap: anywhere; }
+.summary-text { margin-bottom: 12px; font-size: 14px; }
+.pending-note { margin-top: 12px; padding: 10px 12px; border-radius: 6px; background: var(--gold-soft); color: var(--fg); font-size: 14px; }
+
+.empty { padding: 20px; border: 1px dashed var(--line); border-radius: 8px; color: var(--muted); background: var(--surface); }
+.empty strong { color: var(--fg); display: block; margin-bottom: 4px; }
+.skeleton { height: 56px; border-radius: 8px; background: var(--surface-2); }
+.how { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 12px; font-size: 14px; }
+.how div { padding: 14px; border-radius: 8px; background: var(--surface-2); }
+.how code { font-size: 13px; background: var(--surface); padding: 1px 5px; border-radius: 4px; }
+
+@media (max-width: 700px) {
+  .task .body { grid-template-columns: 1fr; }
+  .approval { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <small>Maya Protege · marketing digital</small>
+      <h1>Equipe <span>Maya</span></h1>
+    </div>
+    <div class="counters" aria-label="Resumo da equipe">
+      <div class="counter"><b id="c-working">0</b> trabalhando</div>
+      <div class="counter"><b id="c-waiting">0</b> aguardando você</div>
+      <div class="counter"><b id="c-done">0</b> tarefas concluídas</div>
+    </div>
+    <p class="sync" id="sync" aria-live="polite">Conectando ao registro da equipe…</p>
+  </header>
+
+  <section aria-labelledby="h-approve">
+    <div class="section-head">
+      <h2 id="h-approve">Aguardando sua aprovação</h2>
+      <p>Nada é publicado ou gasto sem você aprovar.</p>
+    </div>
+    <div class="approvals" id="approvals"><div class="skeleton"></div></div>
+  </section>
+
+  <section aria-labelledby="h-team">
+    <div class="section-head">
+      <h2 id="h-team">A equipe</h2>
+      <p>Clique em um agente para ver só as tarefas dele.</p>
+    </div>
+    <div class="areas" id="areas"></div>
+  </section>
+
+  <section aria-labelledby="h-feed">
+    <div class="section-head">
+      <h2 id="h-feed">Atividade</h2>
+      <div class="filter-note" id="filter-note" hidden></div>
+    </div>
+    <div class="feed" id="feed"><div class="skeleton"></div></div>
+  </section>
+
+  <section aria-labelledby="h-how">
+    <div class="section-head"><h2 id="h-how">Como falar com a equipe</h2></div>
+    <div class="how">
+      <div>Na conversa do Claude Code, peça normalmente ou use <code>/diretor</code>. O Diretor distribui e este painel se atualiza sozinho.</div>
+      <div>Atalhos diretos: <code>/analisar-campanhas</code>, <code>/utm</code>, <code>/gtm</code>. Para um especialista, chame pelo nome: "Copywriter, escreva…".</div>
+      <div>Para ver o passo a passo completo de um agente, abra o bloco dele na própria conversa. Aqui fica o resumo e os arquivos.</div>
+    </div>
+  </section>
+</div>
+
+<script>
+const REPO = "https://github.com/gucostat2468/Maya-Marketing-/blob/claude/maya-marketing-fase-1/";
+const TEAM = [
+  { area: "Coordenação", agents: [["diretor", "Diretor de Marketing"]] },
+  { area: "Mídia paga e performance", agents: [["gestor-meta-ads", "Gestor de Meta Ads"], ["gestor-google-ads", "Gestor de Google Ads"]] },
+  { area: "Marketing digital e growth", agents: [["estrategista-growth", "Estrategista de Growth"]] },
+  { area: "Conteúdo e marca", agents: [["social-media", "Social Media"], ["copywriter", "Copywriter"], ["diretor-de-arte", "Diretor de Arte"], ["guardiao-da-marca", "Guardião da Marca"]] },
+  { area: "Dados e mensuração", agents: [["analista-de-mensuracao", "Analista de Mensuração (GTM)"], ["especialista-utm", "Especialista em UTM"], ["analista-de-campanhas", "Analista de Campanhas"]] },
+  { area: "Integração comercial", agents: [["analista-de-funil", "Analista de Funil"]] },
+];
+const NAMES = Object.fromEntries(TEAM.flatMap(g => g.agents));
+const AGENT_STATUS = { livre: "Livre", trabalhando: "Trabalhando", aguardando: "Aguardando você", bloqueado: "Bloqueado" };
+const TASK_STATUS = { na_fila: "Na fila", em_andamento: "Em andamento", aguardando_aprovacao: "Aguardando aprovação", concluida: "Concluída", bloqueada: "Bloqueada" };
+
+const state = { agents: {}, tasks: [], approvals: {}, filter: null, loaded: { agents: false, tasks: false } };
+let db = null;
+const $ = id => document.getElementById(id);
+const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+const fmt = iso => { try { return new Intl.DateTimeFormat("pt-BR", { dateStyle: "short", timeStyle: "short" }).format(new Date(iso)); } catch { return iso || ""; } };
+const pill = (status, labels) => el("span", "pill s-" + status, labels[status] || status);
+
+function renderAreas() {
+  const root = $("areas"); root.replaceChildren();
+  for (const group of TEAM) {
+    const area = el("div", "area");
+    area.append(el("h3", null, group.area));
+    const list = el("div", "agents");
+    for (const [key, name] of group.agents) {
+      const a = state.agents[key] || {};
+      const status = AGENT_STATUS[a.status] ? a.status : "livre";
+      const btn = el("button", "agent");
+      btn.type = "button";
+      btn.setAttribute("aria-pressed", String(state.filter === key));
+      btn.append(el("span", "name", name), pill(status, AGENT_STATUS));
+      btn.append(el("span", "doing", a.tarefa ? a.tarefa : "Sem tarefa no momento"));
+      btn.addEventListener("click", () => { state.filter = state.filter === key ? null : key; renderAreas(); renderFeed(); });
+      list.append(btn);
+    }
+    area.append(list); root.append(area);
+  }
+}
+
+function fileLink(path) {
+  const li = el("li");
+  if (/^https?:\/\//.test(path)) { const a = el("a", null, path); a.href = path; a.target = "_blank"; a.rel = "noopener"; li.append(a); }
+  else { const a = el("a", null, path); a.href = REPO + path.replace(/^\/+/, ""); a.target = "_blank"; a.rel = "noopener"; li.append(a); }
+  return li;
+}
+
+function renderFeed() {
+  const root = $("feed"); root.replaceChildren();
+  const note = $("filter-note");
+  if (state.filter) {
+    note.hidden = false; note.replaceChildren(el("span", null, "Mostrando só: " + (NAMES[state.filter] || state.filter)));
+    const clear = el("button", "link-btn", "Ver todas"); clear.type = "button";
+    clear.addEventListener("click", () => { state.filter = null; renderAreas(); renderFeed(); });
+    note.append(clear);
+  } else note.hidden = true;
+  if (!state.loaded.tasks) { root.append(el("div", "skeleton")); return; }
+  const tasks = state.tasks.filter(t => !state.filter || t.agente === state.filter || (t.participantes || []).includes(state.filter));
+  if (!tasks.length) {
+    const e = el("div", "empty");
+    e.append(el("strong", null, state.filter ? "Este agente ainda não trabalhou em nenhuma tarefa." : "Nenhuma tarefa registrada ainda."));
+    e.append(el("span", null, "Peça algo na conversa do Claude Code, por exemplo: \"Analise as campanhas de outubro\". A tarefa aparece aqui com cada passo."));
+    root.append(e); return;
+  }
+  for (const t of tasks) {
+    const d = el("details", "task");
+    const s = el("summary");
+    s.append(el("span", "title", t.titulo || "Tarefa"), pill(t.status, TASK_STATUS));
+    const who = [NAMES[t.agente] || t.agente, ...(t.participantes || []).filter(p => p !== t.agente).map(p => NAMES[p] || p)].join(", ");
+    const last = (t.passos || []).at(-1);
+    s.append(el("span", "sub", who + " · atualizada em " + fmt(t.atualizada) + (last ? " · " + last.texto : "")));
+    d.append(s);
+    const body = el("div", "body");
+    const left = el("div");
+    if (t.resumo) left.append(el("p", "summary-text", t.resumo));
+    const ol = el("ol", "steps");
+    for (const p of (t.passos || [])) { const li = el("li"); const tm = el("time", null, fmt(p.em)); tm.dateTime = p.em || ""; li.append(tm, document.createTextNode(p.texto || "")); ol.append(li); }
+    left.append(ol);
+    if (t.pendencia) left.append(el("p", "pending-note", "Precisa de você: " + t.pendencia));
+    const right = el("div", "files");
+    right.append(el("h4", null, "Arquivos"));
+    const ul = el("ul");
+    if ((t.arquivos || []).length) t.arquivos.forEach(f => ul.append(fileLink(f)));
+    else ul.append(el("li", null, "Nenhum arquivo nesta tarefa."));
+    right.append(ul);
+    body.append(left, right); d.append(body); root.append(d);
+  }
+}
+
+function renderApprovals() {
+  const root = $("approvals"); root.replaceChildren();
+  if (!state.loaded.tasks) { root.append(el("div", "skeleton")); return; }
+  const waiting = state.tasks.filter(t => t.status === "aguardando_aprovacao");
+  if (!waiting.length) { const e = el("div", "empty"); e.append(el("strong", null, "Nada esperando por você."), el("span", null, "Quando um agente terminar algo que precisa do seu ok (uma campanha, uma peça, um texto), aparece aqui.")); root.append(e); return; }
+  for (const t of waiting) {
+    const box = el("div", "approval");
+    const info = el("div");
+    info.append(el("h3", null, t.titulo || "Tarefa"), el("p", "meta", (NAMES[t.agente] || t.agente) + " · " + fmt(t.atualizada)));
+    if (t.pendencia) info.append(el("p", null, t.pendencia));
+    const decision = state.approvals[t.id];
+    box.append(info);
+    if (decision) {
+      box.append(el("p", "decided", (decision.decisao === "aprovado" ? "Você aprovou" : "Você pediu ajuste") + " em " + fmt(decision.em) + (decision.comentario ? ": " + decision.comentario : "") + ". O Diretor lê isso na próxima conversa."));
+    } else {
+      const id = "c-" + t.id;
+      const ta = el("textarea"); ta.id = id; ta.placeholder = "Comentário (opcional para aprovar, recomendado para pedir ajuste)"; ta.setAttribute("aria-label", "Comentário sobre " + (t.titulo || "a tarefa"));
+      const actions = el("div", "actions");
+      const ok = el("button", "btn primary", "Aprovar"); ok.type = "button";
+      const fix = el("button", "btn", "Pedir ajuste"); fix.type = "button";
+      const send = async (decisao) => {
+        if (!db) return;
+        ok.disabled = fix.disabled = true;
+        try { await db.collection("aprovacoes").doc(t.id).set({ decisao, comentario: ta.value.trim(), em: new Date().toISOString(), tarefa: t.titulo || "" }); }
+        catch (e) { ok.disabled = fix.disabled = false; $("sync").textContent = "Não foi possível salvar sua decisão (" + e.code + "). Responda na conversa do Claude Code."; $("sync").className = "sync warn"; }
+      };
+      ok.addEventListener("click", () => send("aprovado"));
+      fix.addEventListener("click", () => send("ajustar"));
+      actions.append(ok, fix);
+      box.append(actions, ta);
+    }
+    root.append(box);
+  }
+}
+
+function renderCounters() {
+  const agents = Object.values(state.agents);
+  $("c-working").textContent = agents.filter(a => a.status === "trabalhando").length;
+  $("c-waiting").textContent = state.tasks.filter(t => t.status === "aguardando_aprovacao" && !state.approvals[t.id]).length;
+  $("c-done").textContent = state.tasks.filter(t => t.status === "concluida").length;
+}
+
+function renderAll() { renderAreas(); renderApprovals(); renderFeed(); renderCounters(); }
+
+renderAreas();
+
+(async () => {
+  db = await window.claude?.use?.("db");
+  const sync = $("sync");
+  if (!db) {
+    sync.textContent = "O registro ao vivo não está disponível nesta visualização. Abra o painel no claude.ai, com sua conta.";
+    sync.className = "sync warn";
+    state.loaded.tasks = true; renderAll(); return;
+  }
+  const timer = setTimeout(() => { sync.textContent = "O registro ainda não respondeu. Os dados podem estar desatualizados."; sync.className = "sync warn"; }, 10000);
+  const fresh = (meta) => { if (!meta.fromCache) { clearTimeout(timer); sync.textContent = "Ao vivo: atualiza sozinho quando a equipe trabalha."; sync.className = "sync"; } };
+  const fail = (e) => { clearTimeout(timer); sync.textContent = "Perdemos a conexão com o registro (" + e.code + "). Recarregue a página."; sync.className = "sync warn"; };
+  db.collection("agentes").onSnapshot(snap => {
+    state.agents = Object.fromEntries(snap.docs.map(d => [d.id, d.data()]));
+    state.loaded.agents = true; fresh(snap.metadata); renderAll();
+  }, fail);
+  db.collection("tarefas").orderBy("atualizada", "desc").limit(200).onSnapshot(snap => {
+    state.tasks = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    state.loaded.tasks = true; fresh(snap.metadata); renderAll();
+  }, fail);
+  db.collection("aprovacoes").onSnapshot(snap => {
+    state.approvals = Object.fromEntries(snap.docs.map(d => [d.id, d.data()]));
+    renderAll();
+  }, fail);
+})();
+</script>

@@ -39,6 +39,12 @@ Este repositório é a equipe de marketing digital da Maya Protege, operada no c
 9. **Explicar como professor:** o usuário está aprendendo. Toda entrega que exige ação na
    plataforma traz o passo a passo de onde clicar.
 
+## Painel da Equipe
+
+Painel ao vivo: https://claude.ai/artifact/RTWS1SWJ2E4Sri5ynRqwUx (código em
+`paineis/equipe-maya.html`). O Diretor registra cada tarefa, passo e arquivo, e lê as
+aprovações que o usuário dá por lá. Regras de uso em `.claude/skills/diretor/SKILL.md`.
+
 ## Pastas
 
 - `marca/`: memória de marca e referências visuais.
