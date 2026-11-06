@@ -2,10 +2,13 @@
 
 Data: 2026-11-06 · Preparado pelo Especialista em UTM · Fonte do padrão: `marketing/utm/convencao.json`
 
-> **Atenção antes de usar qualquer link deste guia:** todos os exemplos usam o endereço
-> `https://www.exemplo.com.br/`, que **não é o site da Maya Protege**. O site oficial ainda
-> está na lista "A confirmar" de `marca/marca.md`. Quando ele for confirmado, gere os links
-> de novo com a ferramenta (comando no fim de cada seção), trocando só o `--url`.
+> **Site oficial:** todos os links deste guia usam `https://mayaprotege.com.br/` (sem `www`,
+> como aparece no site), confirmado em `marca/marca.md`, seção 6. O formulário de lead fica
+> na página inicial, por isso os links apontam para ela.
+>
+> **Páginas internas:** se quiser mandar a pessoa para uma página específica (ex.: a página
+> de um plano), **abra o site e confira o caminho exato** antes de gerar o link. Esses
+> caminhos não foram confirmados e não aparecem neste guia.
 
 ---
 
@@ -23,7 +26,7 @@ As 5 etiquetas que usamos:
 |---|---|---|
 | `utm_source` | Qual site/plataforma? | `instagram`, `google`, `whatsapp` |
 | `utm_medium` | Que tipo de tráfego? | `paid_social`, `cpc`, `email`, `offline` |
-| `utm_campaign` | Qual campanha? | `leads-produto-sp-202611` |
+| `utm_campaign` | Qual campanha? | `leads-plano-familiar-sp-202611` |
 | `utm_content` | Qual peça/anúncio? | `link-bio`, `panfleto` |
 | `utm_term` | Qual público/palavra-chave? | nome do conjunto ou palavra buscada |
 
@@ -59,7 +62,7 @@ Cole **exatamente assim**, sem `?` no começo e sem espaços. A Meta troca o que
 |---|---|---|
 | `{{site_source_name}}` | Onde o anúncio foi exibido | `fb` (Facebook), `ig` (Instagram), `msg` (Messenger), `an` (Audience Network) |
 | `paid_social` (fixo) | Tipo de tráfego: mídia paga em rede social | `paid_social` |
-| `{{campaign.name}}` | Nome da **campanha** | `leads-produto-sp-202611` |
+| `{{campaign.name}}` | Nome da **campanha** | `leads-plano-familiar-sp-202611` |
 | `{{ad.name}}` | Nome do **anúncio** | `video-30s-v1` |
 | `{{adset.name}}` | Nome do **conjunto de anúncios** | `sp-25-45-interesses` |
 | `{{campaign.id}}` | Número da campanha na Meta | `120210000000000000` |
@@ -108,7 +111,7 @@ sair com o nome no padrão da Maya, sem depender do nome que aparece na interfac
 1. Ainda em **Opções de URL da campanha**, procure **Parâmetros personalizados**.
 2. Clique para adicionar um parâmetro.
 3. No campo do **nome**, digite `_campanha` (com o sublinhado na frente; o Google coloca as chaves sozinho).
-4. No campo do **valor**, digite o nome da campanha no padrão da seção 5, por exemplo `leads-produto-sp-202611` (trocando `produto` pelo nome real quando ele for confirmado).
+4. No campo do **valor**, digite o nome da campanha no padrão da seção 5, por exemplo `leads-plano-familiar-sp-202611` (o `sp` é só exemplo de público/região).
 5. Clique em **Salvar**.
 6. Cada campanha tem o seu próprio valor de `_campanha`. Ao criar uma campanha nova, repita os passos 2 e 3.
 
@@ -135,33 +138,35 @@ nome no padrão.
 ## 4. Links manuais (bio, WhatsApp, e-mail, QR code)
 
 Aqui não existe parâmetro dinâmico: o link é gerado uma vez e colado. **Todos os links abaixo
-saíram da ferramenta** (`python3 ferramentas/utm.py gerar`), com a URL de exemplo e a campanha
-de exemplo `leads-produto-geral-202611`.
+saíram da ferramenta** (`python3 ferramentas/utm.py gerar`), com o site oficial
+`https://mayaprotege.com.br/` e a campanha de exemplo `leads-plano-familiar-geral-202611`.
+Para outra campanha ou outro plano, gere de novo com a ferramenta trocando o `--campaign`,
+nunca editando o link à mão.
 
-> Lembrete: `https://www.exemplo.com.br/` é **só exemplo**. Troque pelo site oficial
-> gerando de novo com a ferramenta, nunca editando o link à mão.
-
-| Onde usar | Link final (exemplo) | source | medium | campaign | content |
+| Onde usar | Link final | source | medium | campaign | content |
 |---|---|---|---|---|---|
-| Instagram: link da bio | `https://www.exemplo.com.br/?utm_source=instagram&utm_medium=organic_social&utm_campaign=leads-produto-geral-202611&utm_content=link-bio` | instagram | organic_social | leads-produto-geral-202611 | link-bio |
-| Instagram: link nos stories | `https://www.exemplo.com.br/?utm_source=instagram&utm_medium=organic_social&utm_campaign=leads-produto-geral-202611&utm_content=stories-link` | instagram | organic_social | leads-produto-geral-202611 | stories-link |
-| Facebook: post orgânico | `https://www.exemplo.com.br/?utm_source=facebook&utm_medium=organic_social&utm_campaign=leads-produto-geral-202611&utm_content=post-feed` | facebook | organic_social | leads-produto-geral-202611 | post-feed |
-| LinkedIn: post orgânico | `https://www.exemplo.com.br/?utm_source=linkedin&utm_medium=organic_social&utm_campaign=leads-produto-geral-202611&utm_content=post-perfil` | linkedin | organic_social | leads-produto-geral-202611 | post-perfil |
-| WhatsApp: mensagem de atendimento | `https://www.exemplo.com.br/?utm_source=whatsapp&utm_medium=referral&utm_campaign=leads-produto-geral-202611&utm_content=mensagem-atendimento` | whatsapp | referral | leads-produto-geral-202611 | mensagem-atendimento |
-| E-mail: botão principal | `https://www.exemplo.com.br/?utm_source=email&utm_medium=email&utm_campaign=leads-produto-geral-202611&utm_content=botao-principal` | email | email | leads-produto-geral-202611 | botao-principal |
-| QR code: panfleto impresso | `https://www.exemplo.com.br/?utm_source=qrcode&utm_medium=offline&utm_campaign=leads-produto-geral-202611&utm_content=panfleto` | qrcode | offline | leads-produto-geral-202611 | panfleto |
-| Parceiro/indicação | `https://www.exemplo.com.br/?utm_source=parceiro&utm_medium=referral&utm_campaign=leads-produto-geral-202611&utm_content=nome-do-parceiro` | parceiro | referral | leads-produto-geral-202611 | nome-do-parceiro |
+| Instagram: link da bio | `https://mayaprotege.com.br/?utm_source=instagram&utm_medium=organic_social&utm_campaign=leads-plano-familiar-geral-202611&utm_content=link-bio` | instagram | organic_social | leads-plano-familiar-geral-202611 | link-bio |
+| Instagram: link nos stories | `https://mayaprotege.com.br/?utm_source=instagram&utm_medium=organic_social&utm_campaign=leads-plano-familiar-geral-202611&utm_content=stories-link` | instagram | organic_social | leads-plano-familiar-geral-202611 | stories-link |
+| Facebook: post orgânico | `https://mayaprotege.com.br/?utm_source=facebook&utm_medium=organic_social&utm_campaign=leads-plano-familiar-geral-202611&utm_content=post-feed` | facebook | organic_social | leads-plano-familiar-geral-202611 | post-feed |
+| LinkedIn: post orgânico | `https://mayaprotege.com.br/?utm_source=linkedin&utm_medium=organic_social&utm_campaign=leads-plano-familiar-geral-202611&utm_content=post-perfil` | linkedin | organic_social | leads-plano-familiar-geral-202611 | post-perfil |
+| WhatsApp: mensagem de atendimento | `https://mayaprotege.com.br/?utm_source=whatsapp&utm_medium=referral&utm_campaign=leads-plano-familiar-geral-202611&utm_content=mensagem-atendimento` | whatsapp | referral | leads-plano-familiar-geral-202611 | mensagem-atendimento |
+| E-mail: botão principal | `https://mayaprotege.com.br/?utm_source=email&utm_medium=email&utm_campaign=leads-plano-familiar-geral-202611&utm_content=botao-principal` | email | email | leads-plano-familiar-geral-202611 | botao-principal |
+| QR code: panfleto impresso | `https://mayaprotege.com.br/?utm_source=qrcode&utm_medium=offline&utm_campaign=leads-plano-familiar-geral-202611&utm_content=panfleto` | qrcode | offline | leads-plano-familiar-geral-202611 | panfleto |
+| Parceiro/indicação | `https://mayaprotege.com.br/?utm_source=parceiro&utm_medium=referral&utm_campaign=leads-plano-familiar-geral-202611&utm_content=nome-do-parceiro` | parceiro | referral | leads-plano-familiar-geral-202611 | nome-do-parceiro |
 
 Observações:
 
 - **WhatsApp:** a UTM vai no link **do site** que você envia na conversa. Link de abrir
-  conversa (`wa.me/...`) não leva a pessoa ao site, então não registra UTM no GA4. Usamos
+  conversa (`wa.me/...`) não leva a pessoa ao site, então não registra UTM no GA4 (o mesmo
+  vale para o botão de WhatsApp do site: ele não precisa de UTM, e por ser link interno do
+  próprio site não deve levar UTM). Usamos
   `referral` porque a convenção não tem um medium próprio para mensageiros; se a equipe
   quiser separar WhatsApp como canal, isso deve ser proposto como inclusão na convenção.
 - **QR code:** sempre `utm_medium=offline`. Esse medium não faz parte dos canais padrão do
   GA4, então ele **pode aparecer como "Unassigned"** nos relatórios de canal; a origem
   continua visível nos relatórios por source/medium. O Analista de Mensuração pode criar um
-  grupo de canais personalizado para "Offline". Gere o QR code a partir do link **completo**
+  grupo de canais personalizado para "Offline". A criação de mediums próprios para WhatsApp e
+  QR code na convenção **aguarda decisão** e não foi feita. Gere o QR code a partir do link **completo**
   (com as UTMs) e teste lendo com o celular antes de imprimir.
 - **Bio do Instagram:** links longos funcionam normalmente na bio; não use encurtador sem
   testar se ele mantém as UTMs.
@@ -170,13 +175,13 @@ Observações:
 Como gerar um link novo (exemplo do QR code):
 
 ```bash
-python3 ferramentas/utm.py gerar --url https://www.exemplo.com.br/ --source qrcode --medium offline --campaign "leads-produto-geral-202611" --content panfleto
+python3 ferramentas/utm.py gerar --url https://mayaprotege.com.br/ --source qrcode --medium offline --campaign "leads-plano-familiar-geral-202611" --content panfleto
 ```
 
 Se você digitar algo fora do padrão, a ferramenta recusa e mostra as opções válidas. Teste real:
 
 ```
-$ python3 ferramentas/utm.py gerar --url https://www.exemplo.com.br/ --source IG --medium social --campaign x
+$ python3 ferramentas/utm.py gerar --url https://mayaprotege.com.br/ --source IG --medium social --campaign x
 Erro: utm_source 'ig' fora do padrão. Use: facebook, instagram, google, youtube, whatsapp, email, linkedin, parceiro, qrcode
 ```
 
@@ -191,21 +196,20 @@ Formato da convenção:
 ```
 
 - **objetivo:** o que a campanha quer (`leads`, `remarketing`, `reconhecimento`...).
-- **produto:** o nome comercial do produto. **Ainda não confirmado** em `marca/marca.md`, por isso aparece como `<produto>`.
-- **publico:** quem é o alvo ou a região (`sp`, `familias`, `visitantes-site`...).
+- **produto:** o plano anunciado, conforme `marca/marca.md`, seção 2: `plano-serenidade`, `plano-familiar`, `plano-familiar-plus` ou `plano-familiar-premium` (use `planos` quando a peça falar de todos).
+- **publico:** quem é o alvo ou a região (`sp`, `familias`, `visitantes-site`, `geral`...). Os exemplos com `sp` são **só ilustração**: use a região ou o público real da campanha.
 - **aaaamm:** ano e mês de início (`202611` = novembro de 2026).
 
 Regras: tudo minúsculo, sem acento, sem espaço, palavras separadas por hífen.
 
-| Nome no padrão (com marcador) | Saída da ferramenta hoje |
+| Plano | Exemplo de nome (validado pela ferramenta) |
 |---|---|
-| `leads-<produto>-sp-202611` | `leads-produto-sp-202611` |
-| `remarketing-<produto>-visitantes-site-202612` | `remarketing-produto-visitantes-site-202612` |
-| `reconhecimento-<produto>-familias-202701` | `reconhecimento-produto-familias-202701` |
+| Familiar | `leads-plano-familiar-sp-202611` |
+| Familiar Plus | `remarketing-plano-familiar-plus-visitantes-site-202612` |
+| Serenidade | `reconhecimento-plano-serenidade-familias-202701` |
+| Familiar Premium | `leads-plano-familiar-premium-sp-202611` |
 
-A ferramenta remove os sinais `< >`, por isso hoje sai a palavra `produto`. **Não suba
-campanhas com a palavra "produto" no nome:** troque pelo nome real assim que ele for
-confirmado. Esse mesmo nome vai no nome da campanha da Meta (vira `{{campaign.name}}`) e no
+Esse mesmo nome vai no nome da campanha da Meta (vira `{{campaign.name}}`) e no
 parâmetro `_campanha` do Google.
 
 ---
@@ -231,22 +235,33 @@ python3 ferramentas/utm.py auditar caminho/do/arquivo.csv
 3. A ferramenta lista cada link com problema e diz no fim quantos estão dentro do padrão.
 
 Exemplo real, com o arquivo de teste `entregas/2026-11-06-guia-utm/exemplo-auditoria.csv`
-(links errados de propósito):
+(links errados de propósito, já com o site oficial):
 
 ```
-linha 2: https://www.exemplo.com.br/?utm_source=Instagram&utm_medium=paid_social&utm_campaign=leads-produto-geral-202611
+linha 2: https://mayaprotege.com.br/?utm_source=Instagram&utm_medium=paid_social&utm_campaign=leads-plano-familiar-geral-202611
   - utm_source='Instagram' fora do padrão (minúsculas, sem acento, hífen)
   - utm_source 'Instagram' não está na convenção
-linha 3: https://www.exemplo.com.br/?utm_source=ig&utm_medium=social&utm_campaign=leads-produto-geral-202611
+linha 3: https://mayaprotege.com.br/?utm_source=ig&utm_medium=social&utm_campaign=leads-plano-familiar-geral-202611
   - utm_source 'ig' não está na convenção
   - utm_medium 'social' não está na convenção (o GA4 pode classificar como Unassigned)
-linha 4: https://www.exemplo.com.br/?utm_source=email&utm_medium=email
+linha 4: https://mayaprotege.com.br/?utm_source=email&utm_medium=email
   - falta utm_campaign
-linha 5: https://www.exemplo.com.br/?UTM_SOURCE=email&utm_medium=email&utm_campaign=Promoção Novembro
+linha 5: https://mayaprotege.com.br/?UTM_SOURCE=email&utm_medium=email&utm_campaign=Promoção Novembro
   - parâmetro 'UTM_SOURCE' com maiúscula (o GA4 diferencia)
   - utm_campaign='Promoção Novembro' fora do padrão (minúsculas, sem acento, hífen)
 
 1 de 5 links dentro do padrão.
+```
+
+### Auditoria dos links deste guia
+
+Os 8 links finais da seção 4 foram salvos em `entregas/2026-11-06-guia-utm/links-finais.csv`
+(coluna `url`) e auditados em 2026-11-06:
+
+```
+$ python3 ferramentas/utm.py auditar entregas/2026-11-06-guia-utm/links-finais.csv
+
+8 de 8 links dentro do padrão.
 ```
 
 Para corrigir, gere o link de novo com `gerar` e substitua o antigo onde ele estiver publicado.
@@ -255,6 +270,9 @@ Para corrigir, gere o link de novo com `gerar` e substitua o antigo onde ele est
 
 ## Antes de usar de verdade
 
-- [ ] Site oficial confirmado em `marca/marca.md` e links regenerados com ele.
-- [ ] Nome real do produto no lugar de `produto` nos nomes de campanha.
+- [x] Site oficial confirmado em `marca/marca.md` (mayaprotege.com.br) e links regenerados com ele.
+- [x] Nomes de campanha com os planos reais (Serenidade, Familiar, Familiar Plus, Familiar Premium).
+- [ ] Trocar o público de exemplo (`sp`, `geral`) pelo público ou região real de cada campanha.
+- [ ] Conferir no site o caminho de qualquer página interna (ex.: página de um plano) antes de gerar link para ela.
+- [ ] Decisão sobre incluir mediums próprios para WhatsApp e QR code na convenção (hoje: `referral` e `offline`).
 - [ ] Caminhos de menu conferidos na interface atual da Meta e do Google (as plataformas mudam nomes de menus com frequência; os passos acima não foram conferidos na Central de Ajuda oficial nesta sessão).
