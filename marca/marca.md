@@ -161,3 +161,22 @@ usar em mídia paga.
   (`marketing/gtm/captura-origem.html`).
 - **Social Media:** perfil pequeno (80 seguidores) com conteúdo de boa qualidade: foco em
   alcance e salvamentos; os carrosséis educativos e o quiz são o formato da marca.
+
+## 11. O que o feed completo mostra (prints de 06/11/2026, `referencias/instagram/feed-grade-*.png`)
+
+- **Central de atendimento 24h:** (11) 3995-0610, "Central de Atendimento 24h, todos os dias".
+  Um post comunica que **o telefone para comunicar óbitos mudou** para esse número; no post
+  de assistência 24h aparece "também atendemos via WhatsApp". Confirmar com a empresa qual
+  número usar em cada peça (central de óbitos x WhatsApp comercial
+  https://wa.me/5511945524233).
+- **Assinatura vista nas peças:** "Planos de Assistência Funeral Familiar" e "Cuidar é o que
+  nos move".
+- **Temas já publicados:** datas (Setembro Amarelo, Outubro Rosa, Dia das Crianças, Saúde
+  Mental, Dia do Coração, Doação de Órgãos, Alzheimer, Dia do Cliente, Pessoa Idosa,
+  Independência, Dia do Psicólogo, Finados, Novembro), comparativo dos planos (Familiar x
+  Plus x Premium, "Qual plano combina com sua família?"), "Mito ou verdade", "Plano funerário
+  é só para idosos? Não", "Todos os planos incluem cremação? Não (depende do contratado)",
+  bastidores da equipe da assistência 24h, passo a passo do acionamento, benefícios em vida.
+- **Observação do Diretor de Arte:** o feed é muito dependente de datas comemorativas e de
+  fotos de banco; os posts mais úteis (comparativo, mito ou verdade, passo a passo) são os que
+  devem virar série fixa.
