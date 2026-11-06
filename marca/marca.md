@@ -104,6 +104,9 @@ Detalhes de carência, dependentes, abrangência e exclusões: **ver "Saiba Mais
   Funerário: Iremos te chamar para passar mais informações"), campos **Nome completo** e
   **Telefone**, botão "Quero Saber Mais!".
 - **WhatsApp:** botão flutuante em todas as páginas e "Falar no WhatsApp".
+- **Quiz com assistente virtual:** `https://mayaprotege.com.br/quiz` (print de 06/11/2026). Um
+  "Assistente virtual" da Maya Protege pede nome e dados "para nossa equipe falar com você
+  pelo WhatsApp". É um ponto de captação de lead em conversa (sem formulário clássico).
 - **App:** contratação e gestão (links da bio: site + 1 outro link, a confirmar qual).
 - **Instagram @maya.protege** (06/11/2026): 44 posts, 80 seguidores, destaques PLANOS,
   BENEFÍCIOS, 24h, DÚVIDAS, SOBRE. Relação com o perfil "Grupo Maya" (@grupomayabr): a
