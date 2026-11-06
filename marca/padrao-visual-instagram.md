@@ -1,6 +1,6 @@
 # Padrão visual do Instagram: Maya Protege
 
-**Versão 1 · 06/11/2026 · Dono: Diretor de Arte.** Regra para toda a equipe (Diretor de Arte,
+**Versão 1.1 · 06/11/2026 · Dono: Diretor de Arte.** (1.1: seção 13, botões e chamadas para ação por formato.) Regra para toda a equipe (Diretor de Arte,
 Social Media, Copywriter, Gestor de Meta Ads, Guardião da Marca). Vale para feed, carrossel e
 stories, orgânico e anúncio. Base: `marca/marca.md` e a auditoria
 `entregas/2026-11-06-padrao-visual/auditoria-feed.md`. Exemplos aplicados:
@@ -54,7 +54,7 @@ Setembro Amarelo), só no símbolo e na palavra que nomeia a campanha.
 |---|---|---|
 | Topo | y 80 a 136 | Logo à esquerda (x 80); contador de slide à direita (alinhado em x 1000) |
 | Conteúdo | y 200 a 1110 | Título, apoio, gráfico ou foto |
-| Rodapé | y 1174 a 1270 | 1 CTA em pílula à esquerda (x 80), ou nada |
+| Rodapé | y 1174 a 1270 | 1 chamada em formato de instrução (ícone + texto) à esquerda (x 80), ou nada. Ver seção 13 |
 
 - Alinhamento **à esquerda** por padrão. Centralizado só em peça de símbolo único (data,
   campanha) e nunca misturado com bloco alinhado à esquerda na mesma peça.
@@ -63,7 +63,7 @@ Setembro Amarelo), só no símbolo e na palavra que nomeia a campanha.
 - **Áreas cobertas pela interface:** nada importante nos **250 px de cima** (y 0 a 250) nem nos
   **340 px de baixo** (y 1580 a 1920). Laterais: 80 px.
 - Área segura: x 80 a 1000, y 250 a 1580 (920 x 1330 px).
-- Logo em x 80, y 280. CTA (pílula ou espaço do sticker de link) com a base em **no máximo y 1540**.
+- Logo em x 80, y 280. **Zona da figurinha de link** (seção 13) com a base em **no máximo y 1540**.
 
 ## 3. Tipografia
 
@@ -133,7 +133,7 @@ Link: `https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,40
 | Destaque itálico | #43CB6D | #0D9448 |
 | Corpo | #C5D3CE | #3E524C |
 | Cartão | rgba(255,255,255,0.06) com borda #FFFFFF 14% | #EFFAF5 ou #FFFFFF com borda #D7E6DF |
-| CTA | pílula #0D9448, texto branco | pílula #0C332A, texto branco |
+| Chamada (instrução) | ícone #43CB6D + texto branco | ícone #0D9448 + texto #091D19 |
 
 Proporção aproximada **70 / 25 / 5**: fundo / texto e cartões / verde de destaque. O verde
 vivo é tempero, não fundo.
@@ -162,7 +162,7 @@ vivo é tempero, não fundo.
 - O ícone de WhatsApp só aparece em CTA que **abre o WhatsApp**.
 - **Formas:** hexágono e pétala geométrica do universo do emblema, em verde translúcido (8% a 20%)
   ou só contorno, sangrando pela borda. **1 forma por peça.** Nunca desenhar ou imitar o logotipo.
-- Cartões com raio 32 a 40 px; pílulas com raio total.
+- Cartões com raio 32 a 40 px. **Pílula cheia com cara de botão não é usada em peça do Instagram** (seção 13).
 
 ## 8. Logo
 
@@ -204,7 +204,7 @@ vivo é tempero, não fundo.
 5. [ ] Contraste: corpo ≥ 4,5:1, título e CTA ≥ 3:1.
 6. [ ] Margem de 80 px respeitada; nada cortado (a ferramenta de renderização não avisou corte).
 7. [ ] Stories: nada importante em y < 250 ou y > 1580.
-8. [ ] **1 CTA**, visível, com verbo da marca ("Conheça nossos planos", "Fale com um especialista").
+8. [ ] **1 CTA**, visível, com verbo da marca, **no formato certo para o lugar** (seção 13): stories com zona da figurinha limpa; anúncio sem botão desenhado; feed orgânico como instrução, sem pílula.
 9. [ ] **1 destaque** em itálico verde, no máximo.
 10. [ ] Logo na posição fixa, 1 vez (ou espaço "LOGO").
 11. [ ] Foto: real, autorizada, sem tristeza em destaque, sem logo gerado (ou nenhuma foto).
@@ -220,3 +220,52 @@ Cada peça entregue vem com camadas em `especificacoes-figma.json` (posição ab
 cor, raio, fonte, tamanho, peso, estilo, alinhamento, entrelinha). No Figma: frame do tamanho do
 formato, grade de layout de 6 colunas com margem 80 e calha 16, estilos de texto com os nomes da
 seção 3 e estilos de cor com os nomes dos tokens da seção 1.
+
+## 13. Botões e chamadas para ação por formato
+
+**No Instagram, nada desenhado dentro da imagem é clicável.** Um botão desenhado que parece
+clicável e não é frustra quem toca e passa a impressão de peça quebrada. Por isso a chamada
+muda conforme o lugar onde a peça aparece:
+
+| Formato | O que é clicável de verdade | O que a arte faz |
+|---|---|---|
+| **Stories** | A **figurinha de link** do Instagram, colada sobre a arte na hora de publicar | Reserva a **zona da figurinha** limpa e dá uma pista leve |
+| **Anúncio (Meta Ads)** | O **botão nativo** do anúncio ("Enviar mensagem" para WhatsApp, "Saiba mais" para o site), que fica **fora da imagem** | **Não desenha botão nem chamada**; a arte termina na mensagem |
+| **Feed orgânico e carrossel** | Nada na imagem. Só o link da bio e as ações nativas (curtir, comentar, salvar, compartilhar) | Chamada em formato de **instrução** (ícone + texto), **sem pílula** |
+
+### 13.1 Stories: zona da figurinha
+- **Zona da figurinha:** 720 x 150 px, **centralizada** (x 180 a 900), dentro da área segura,
+  com a base **acima de y 1580** (padrão: y 1388 a 1538). Variáveis CSS: `--zona-x`, `--zona-y`,
+  `--zona-l`, `--zona-a`; marcar o elemento com `data-slot="figurinha-link"`.
+- **Nada desenhado por baixo da zona:** sem pílula, sem cartão, sem texto. Só o fundo.
+- **Pista visual leve** logo acima da zona: 1 frase de até 8 palavras em Inter 600, 42 px, com
+  uma seta para baixo em #43CB6D (ex.: "Toque no link e fale com a gente"). A pista é
+  centralizada por estar presa à figurinha; é a única exceção à regra de alinhamento à esquerda.
+- Toda peça de stories com link é entregue em **duas versões**: a arte para publicar (zona
+  limpa) e um **guia** (`-guia.png`) com a zona tracejada e o aviso "Cole aqui a figurinha de
+  link · GUIA · NÃO PUBLICAR", só para quem vai publicar.
+- O texto da figurinha é personalizado no app (ex.: "Fale com a gente"); ver o kit de publicação
+  da entrega.
+
+### 13.2 Anúncio: o botão é nativo
+- A versão de anúncio **não tem CTA desenhado**. O rodapé fica vazio (só fundo e forma).
+- A chamada vai no botão nativo escolhido no Gerenciador de Anúncios e no texto principal.
+- Nome do arquivo com sufixo `-anuncio`. Nunca reaproveitar a versão de feed orgânico com
+  "link na bio" em anúncio (em anúncio não há bio para onde ir).
+
+### 13.3 Feed orgânico e carrossel: chamada como instrução
+- **Ícone de linha + texto**, sem fundo, sem pílula, sem borda, na zona do rodapé (x 80, y 1174
+  a 1270). Inter 600, 36 px. Ícone 44 px em #43CB6D (fundo escuro) ou #0D9448 (fundo claro).
+- Pode destacar em verde **só o trecho da ação** ("link na bio", "A, B ou C"), na mesma Inter
+  (não conta como o itálico verde da serifa).
+- **Só ações que existem de verdade:**
+
+| Ação | Texto modelo | Ícone |
+|---|---|---|
+| Salvar | "Salve este post" | marcador (bookmark) |
+| Comentar | "Responda nos comentários: A, B ou C" | balão de conversa |
+| Compartilhar | "Compartilhe com quem precisa saber" | avião de papel |
+| Link na bio | "Conheça os planos: link na bio" | elo de corrente |
+| WhatsApp | "Chame no WhatsApp: (11) 94552-4233" | balão de conversa (o ícone do WhatsApp fica para o que abre o WhatsApp de verdade: figurinha e anúncio, seção 7) |
+
+- Nunca escrever "Clique aqui" ou "Toque aqui" numa peça de feed: não há onde tocar.
