@@ -65,6 +65,7 @@ python3 ferramentas/analisar_campanhas.py dados/campanhas/*.csv [--vendas vendas
 python3 ferramentas/utm.py gerar --url <url> --source <source> --medium <medium> --campaign "<nome>"
 python3 ferramentas/utm.py modelos | auditar links.csv
 node ferramentas/renderizar_peca.cjs <peca.html> <largura> <altura> <saida.png>
+node ferramentas/gravar_video.cjs <peca-animada.html> <largura> <altura> <segundos> <saida.mp4> [fps]   # vídeo MP4 (H.264)
 python3 -m unittest discover -s ferramentas/tests -t .     # testes
 ```
 

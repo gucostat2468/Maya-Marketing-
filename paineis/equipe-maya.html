@@ -400,7 +400,9 @@ function renderDeliveries() {
     const c = el("button", "dcard"); c.type = "button";
     const th = el("div", "dthumb");
     const img = (x.itens || []).find(i => i.tipo === "imagem" && i.asset);
+    const vid = (x.itens || []).find(i => i.tipo === "video" && i.asset);
     if (img) { const im = el("img"); im.src = blobUrl(img.asset); im.alt = ""; im.loading = "lazy"; th.append(im); }
+    else if (vid) { const vv = el("video"); vv.src = blobUrl(vid.asset); vv.muted = true; vv.playsInline = true; vv.preload = "metadata"; vv.style.width = "100%"; vv.style.height = "100%"; vv.style.objectFit = "cover"; th.append(vv); }
     else { const d = el("div", "doc", x.titulo || "Documento"); d.append(el("small", null, ((x.itens || []).length || 1) + " arquivo(s)")); th.append(d); }
     const body = el("div", "dbody");
     body.append(el("strong", null, x.titulo || "Entrega"), el("span", null, (INFO[x.agente]?.name || x.agente || "") + ", " + fmt(x.criada)));
@@ -417,7 +419,7 @@ async function baixar(item, btn) {
   btn.disabled = true;
   try {
     let data;
-    if (item.tipo === "imagem") data = await (await fetch(blobUrl(item.asset))).blob();
+    if (item.tipo === "imagem" || item.tipo === "video") data = await (await fetch(blobUrl(item.asset))).blob();
     else data = item.conteudo || "";
     await downloads.save({ filename: item.arquivo || item.nome || "entrega.txt", data });
   } catch (e) { btn.textContent = "Não foi possível baixar"; }
@@ -451,7 +453,8 @@ function renderViewer() {
     row.append(el("strong", null, item.nome || "Arquivo"));
     const dl = el("button", "btn", "Baixar"); dl.type = "button"; dl.addEventListener("click", () => baixar(item, dl)); row.append(dl);
     box.append(row);
-    if (item.tipo === "imagem" && item.asset) { const im = el("img"); im.src = blobUrl(item.asset); im.alt = item.descricao || item.nome || ""; if (item.largura) { im.width = item.largura; im.height = item.altura; } box.append(im); }
+    if (item.tipo === "video" && item.asset) { const vv = el("video"); vv.src = blobUrl(item.asset); vv.controls = true; vv.playsInline = true; vv.loop = true; vv.muted = true; vv.style.maxWidth = "100%"; vv.style.maxHeight = "82vh"; vv.style.margin = "0 auto"; vv.style.display = "block"; vv.style.borderRadius = "8px"; box.append(vv); }
+    else if (item.tipo === "imagem" && item.asset) { const im = el("img"); im.src = blobUrl(item.asset); im.alt = item.descricao || item.nome || ""; if (item.largura) { im.width = item.largura; im.height = item.altura; } box.append(im); }
     else if (item.conteudo) {
       const md = el("div", "md");
       if (window.marked && window.DOMPurify) md.innerHTML = DOMPurify.sanitize(marked.parse(item.conteudo));
