@@ -19,11 +19,21 @@ ele não confirmou.
 | Fonte | Como | Situação |
 |---|---|---|
 | Web e notícias, sites dos concorrentes, Reclame Aqui | `WebSearch` (e leitura de páginas quando a rede permitir) | disponível |
-| Anúncios ativos no Meta | Biblioteca de Anúncios (facebook.com/ads/library) | depende de liberar o acesso de rede |
-| Anúncios no Google | Centro de Transparência de Anúncios (adstransparency.google.com) | depende de liberar o acesso de rede |
+| Anúncios ativos no Meta | `node ferramentas/radar_anuncios.cjs "plano funerário" "assistência funeral" --max 60 --saida <pasta>/anuncios-meta.json` (Biblioteca de Anúncios, Brasil, só ativos) | disponível no ambiente `maya-marketing` |
+| Anúncios no Google | Centro de Transparência de Anúncios (adstransparency.google.com), pesquisando pelo nome do anunciante com o navegador (Playwright) | disponível no ambiente `maya-marketing` |
 | Instagram (posts, frequência, seguidores) | prints enviados pelo usuário ou API de Business Discovery da Meta (exige app e token) | manual por enquanto |
 
 Nunca invente o que não conseguiu ver: escreva "não consultado hoje" e o motivo.
+
+## Como ler os anúncios (o que importa para vendas)
+
+- **Dias no ar:** anúncio ativo há mais de 60 dias provavelmente dá resultado (ninguém paga
+  muito tempo por anúncio ruim). É hipótese forte, não certeza.
+- **"N anúncios usam esse criativo":** o anunciante está escalando aquele criativo.
+- **Promessa e oferta:** preço por dia/mês, dependentes, idade, cremação, carência, benefícios
+  em vida, botão para WhatsApp. Compare com o que a Maya oferece (marca.md, seção 2).
+- **Ângulo emocional:** dor (pedir dinheiro para o enterro), tranquilidade, luxo, prova
+  social ("mais de 5 mil pessoas"). Registre o ângulo de cada anúncio.
 
 ## Radar diário (entregável)
 
