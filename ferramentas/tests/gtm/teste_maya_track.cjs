@@ -87,8 +87,11 @@ const check = (ok, msg) => { console.log((ok ? "ok: " : "FALHOU: ") + msg); if (
   check(new Set(ids).size === ids.length, "event_id único em todos os pushes");
   // nenhum push com nome, telefone ou e-mail
   const texto = JSON.stringify(todos).toLowerCase();
-  const pii = ["maria", "98888", "988887777", "@teste.com", "\"nome\"", "\"telefone\"", "\"email\"", "\"whatsapp\""];
-  check(pii.every((s) => !texto.includes(s)), "nenhum push contém nome, telefone ou e-mail");
+  // step_name "nome"/"telefone" é o NOME da pergunta (permitido); o que não pode é o dado.
+  const valores = ["maria", "98888", "988887777", "@teste.com"].filter((s) => texto.includes(s));
+  const chaves = todos.flatMap(Object.keys).filter((k) => ["nome", "telefone", "email", "whatsapp"].includes(k));
+  const achados = valores.concat(chaves);
+  check(achados.length === 0, "nenhum push contém nome, telefone ou e-mail" + (achados.length ? " (achou: " + achados.join(", ") + ")" : ""));
 
   await browser.close();
   console.log(falhas ? `${falhas} falha(s)` : "todos os testes passaram");

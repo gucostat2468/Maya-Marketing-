@@ -31,7 +31,7 @@
 
   function clean(v) {
     v = String(v == null ? "" : v).replace(/^\s+|\s+$/g, "").toLowerCase();
-    if (v.normalize) v = v.normalize("NFD").replace(/[̀-ͯ]/g, "");
+    if (v.normalize) v = v.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     return v.slice(0, 150);
   }
 
