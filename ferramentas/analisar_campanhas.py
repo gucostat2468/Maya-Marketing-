@@ -33,7 +33,10 @@ from pathlib import Path
 from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from app.domain.metrics import CATALOG, MetricResult, MetricStatus, compute  # noqa: E402
+from ferramentas.decisoes import decidir  # noqa: E402
+from ferramentas.estatistica import poisson_ci  # noqa: E402,F401
 
 # ---------------------------------------------------------------------------
 # Leitura e normalização dos arquivos
@@ -198,6 +201,7 @@ def read_file(path: Path, platform_hint: str | None = None) -> tuple[Arquivo, li
             if value:
                 days.append(value)
         rec["day"] = (get("day") or "").strip() or None
+        rec["indicator"] = norm(get("result_indicator") or "") or None
         records.append(rec)
         info.rows_used += 1
     if days:
@@ -213,16 +217,6 @@ def read_file(path: Path, platform_hint: str | None = None) -> tuple[Arquivo, li
 def _sum(values: list[Decimal | None]) -> Decimal | None:
     known = [v for v in values if v is not None]
     return sum(known, Decimal(0)) if known else None
-
-
-def poisson_ci(count: int, z: float = 1.96) -> tuple[float, float]:
-    """Intervalo de 95% para uma contagem (aproximação de Byar). Ex.: nº de leads."""
-    if count <= 0:
-        upper = (count + 1) * (1 - 1 / (9 * (count + 1)) + z / (3 * math.sqrt(count + 1))) ** 3
-        return 0.0, upper
-    lower = count * (1 - 1 / (9 * count) - z / (3 * math.sqrt(count))) ** 3
-    upper = (count + 1) * (1 - 1 / (9 * (count + 1)) + z / (3 * math.sqrt(count + 1))) ** 3
-    return lower, upper
 
 
 @dataclass
@@ -557,8 +551,69 @@ def read_sales(path: Path) -> dict[str, dict[str, Decimal | None]]:
     return out
 
 
+def decide_all(campanhas: list[Campanha], records: list[dict[str, Any]],
+               cpl_alvo: Decimal | None, cpa_alvo: Decimal | None) -> dict[tuple[str, str], Any]:
+    """Uma decisão por campanha. Vendas (CPA) mandam quando há dados do comercial."""
+    tem_vendas = any(c.base.get("sales") is not None for c in campanhas)
+    usa_cpa = tem_vendas and (cpa_alvo is not None or any(c.base.get("sales") for c in campanhas))
+    metrica = "cpa" if usa_cpa else "cpl"
+    alvo = cpa_alvo if metrica == "cpa" else cpl_alvo
+    provisorio = alvo is None
+    if provisorio:  # meta provisória: custo médio da conta
+        chave = "sales" if metrica == "cpa" else "leads"
+        gasto = _sum([c.base["spend"] for c in campanhas if c.base.get(chave)])
+        qtd = _sum([c.base.get(chave) for c in campanhas])
+        alvo = gasto / qtd if gasto and qtd else None
+    series: dict[tuple[str, str], list[dict[str, Any]]] = {}
+    for r in records:
+        series.setdefault((r["platform"], r["campaign"]), []).append(r)
+    out: dict[tuple[str, str], Any] = {}
+    for c in campanhas:
+        if alvo is None:
+            out[(c.platform, c.campaign)] = None
+            continue
+        serie = series.get((c.platform, c.campaign)) or []
+        inds = [r.get("indicator") for r in serie if r.get("indicator")]
+        objetivo_lead = (any("lead" in i or "cadastro" in i for i in inds) if inds else None)
+        out[(c.platform, c.campaign)] = decidir(c.base, c.platform, metrica, alvo, provisorio,
+                                                serie, objetivo_lead)
+    return out
+
+
+ORDEM_ACAO = ["PAUSAR", "ESCALAR", "AJUSTAR", "VERIFICAR", "MANTER", "AGUARDAR",
+              "OUTRO_OBJETIVO", "SEM_DADOS"]
+
+
+def render_decisoes(campanhas: list[Campanha], decisoes: dict[tuple[str, str], Any]) -> str:
+    itens = [(c, decisoes.get((c.platform, c.campaign))) for c in campanhas]
+    itens = [(c, d) for c, d in itens if d]
+    if not itens:
+        return ("## O que fazer com cada campanha\n\nSem leads nem vendas nos dados: "
+                "não há como decidir por resultado.\n\n")
+    itens.sort(key=lambda x: ORDEM_ACAO.index(x[1]["acao"]))
+    d0 = itens[0][1]
+    nome = "venda (CPA)" if d0["metrica"] == "cpa" else "lead (CPL)"
+    meta = fmt_money(d0["alvo"]) + (" (provisória: média da conta)" if any(
+        "provisória" in a for a in d0["alertas"]) else "")
+    L = ["## O que fazer com cada campanha\n",
+         f"Decisão pelo custo por {nome}. Meta usada: {meta}. Com pouca amostra a resposta é "
+         "**aguardar**: mexer cedo reinicia o aprendizado da plataforma.\n",
+         "| Campanha | Decisão | Por quê | O que fazer agora | Confiança |",
+         "|---|---|---|---|---|"]
+    for c, d in itens:
+        L.append(f"| {c.campaign} ({PLATFORM_LABEL.get(c.platform, c.platform)}) | "
+                 f"**{d['rotulo']}** | {d['motivo']} | {d['fazer']} | {d['confianca']} |")
+    alertas = [(c, a) for c, d in itens for a in d["alertas"] if "provisória" not in a]
+    if alertas:
+        L.append("\n**Alertas:**")
+        for c, a in alertas:
+            L.append(f"- **{c.campaign}**: {a}")
+    return "\n".join(L) + "\n\n"
+
+
 def analyze(paths: list[Path], sales_path: Path | None = None, margin: Decimal | None = None,
-            minimum: int | None = None) -> dict[str, Any]:
+            minimum: int | None = None, cpl_alvo: Decimal | None = None,
+            cpa_alvo: Decimal | None = None) -> dict[str, Any]:
     seen: set[str] = set()
     files: list[Arquivo] = []
     records: list[dict[str, Any]] = []
@@ -591,8 +646,10 @@ def analyze(paths: list[Path], sales_path: Path | None = None, margin: Decimal |
     minimum = minimum if minimum is not None else RANKING_RULES[metric][2]
     ranking = rank(campanhas, metric, minimum)
     diags = diagnostics(campanhas, RANKING_RULES["cpl"][2])
+    decisoes = decide_all(campanhas, unique, cpl_alvo, cpa_alvo)
     report = build_report(files, campanhas, metric, minimum, ranking, diags, margin,
                           sales_path is not None)
+    report = report.replace("## Ranking:", render_decisoes(campanhas, decisoes) + "## Ranking:", 1)
     if warnings:
         report = report.replace("## Totais", "> " + "\n> ".join(warnings) + "\n\n## Totais", 1)
     return {
@@ -604,6 +661,7 @@ def analyze(paths: list[Path], sales_path: Path | None = None, margin: Decimal |
             "metrics": {k: v.to_dict() for k, v in c.metrics.items()},
             "roi": c.roi.to_dict() if c.roi else None,
             "eligible": c.eligible, "ci": c.ci, "label": c.label,
+            "decisao": decisoes.get((c.platform, c.campaign)),
         } for c in campanhas],
         "ranking": [c.campaign for c in ranking],
         "diagnostics": diags,
@@ -617,12 +675,15 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--vendas", type=Path, help="CSV comercial: campanha, vendas, receita")
     parser.add_argument("--margem", type=Decimal, help="margem de contribuição (0.35 = 35%%)")
     parser.add_argument("--minimo", type=int, help="volume mínimo para entrar no ranking")
+    parser.add_argument("--cpl-alvo", type=Decimal, help="custo máximo aceitável por lead (R$)")
+    parser.add_argument("--cpa-alvo", type=Decimal, help="custo máximo aceitável por venda (R$)")
     parser.add_argument("--saida", type=Path, help="pasta para salvar relatorio.md e resultado.json")
     args = parser.parse_args(argv)
     if args.margem is not None and not (Decimal(0) < args.margem <= Decimal(1)):
         parser.error("--margem deve estar entre 0 e 1 (ex.: 0.35).")
     try:
-        result = analyze(args.arquivos, args.vendas, args.margem, args.minimo)
+        result = analyze(args.arquivos, args.vendas, args.margem, args.minimo,
+                         args.cpl_alvo, args.cpa_alvo)
     except (LeituraErro, FileNotFoundError) as exc:
         print(f"Erro: {exc}", file=sys.stderr)
         return 2

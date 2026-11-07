@@ -20,6 +20,7 @@ Este repositório é a equipe de marketing digital da Maya Protege, operada no c
 | Dados e mensuração | Especialista em UTM | `.claude/agents/especialista-utm.md` |
 | Dados e mensuração | Analista de Campanhas (CPL, CPC, ROI, ranking) | `.claude/agents/analista-de-campanhas.md` |
 | Integração comercial | Analista de Funil | `.claude/agents/analista-de-funil.md` |
+| Inteligência competitiva | Analista de Concorrência (radar diário) | `.claude/agents/analista-de-concorrencia.md` |
 
 ## Regras que valem para todos
 

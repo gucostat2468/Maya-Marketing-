@@ -31,6 +31,25 @@ de `ferramentas/analisar_campanhas.py`. Seu valor está em interpretar, prioriza
 5. **Opcional:** se o usuário quiser uma página para ver ou compartilhar, publique o resumo
    como Artifact.
 
+## Decisão por campanha (o que o usuário mais precisa)
+
+A ferramenta agora diz, para cada campanha, **Pausar, Ajustar, Aguardar, Manter, Escalar,
+Verificar rastreamento ou Outro objetivo**, com motivo, ação e confiança. Use sempre a meta:
+`--cpa-alvo` (custo máximo por venda) quando houver vendas, `--cpl-alvo` (custo máximo por
+lead) quando não houver. Sem meta, a ferramenta usa a média da conta e avisa que é provisória.
+
+Como chegar na meta (explique ao usuário e registre em `marca/metas.md` quando ele informar):
+- **CPA máximo** = mensalidade média do plano × meses médios que o cliente fica × margem
+  × parcela que a empresa aceita investir para conquistar o cliente.
+- **CPL máximo** = CPA máximo × taxa de conversão de lead em venda (do comercial).
+Se `marca/metas.md` existir, use os valores de lá.
+
+No resumo executivo, comece pela tabela de decisões, na ordem: Pausar, Escalar, Ajustar,
+Verificar, Manter, Aguardar. Para "Escalar", explique a diferença entre **escala vertical**
+(subir orçamento aos poucos) e **horizontal** (duplicar o conjunto para público novo).
+Lembre que as regras de escala são boas práticas de mercado, não regras das plataformas.
+Peça exportação **por dia** (coluna Dia) para a ferramenta detectar piora nos últimos 3 dias.
+
 ## Regras de interpretação
 
 - **Volume não é resultado.** Mais leads ou CPL menor não significa mais clientes. Quando

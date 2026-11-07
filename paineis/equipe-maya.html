@@ -240,6 +240,7 @@ const TEAM = [
   { area: "Conteúdo e marca", agents: [["social-media", "Social Media", "Calendário e perfis orgânicos."], ["copywriter", "Copywriter", "Textos de anúncio, títulos e CTAs."], ["diretor-de-arte", "Diretor de Arte", "Peças em PNG no tamanho certo."], ["guardiao-da-marca", "Guardião da Marca", "Revisão final: marca, promessas e políticas."]] },
   { area: "Dados e mensuração", agents: [["analista-de-mensuracao", "Analista de Mensuração", "GTM, GA4, pixel e conversões."], ["especialista-utm", "Especialista em UTM", "Links rastreáveis no padrão."], ["analista-de-campanhas", "Analista de Campanhas", "CPC, CPL, CPA, ROAS, ROI e ranking."]] },
   { area: "Integração comercial", agents: [["analista-de-funil", "Analista de Funil", "Lead qualificado e devolutiva de vendas."]] },
+  { area: "Inteligência competitiva", agents: [["analista-de-concorrencia", "Analista de Concorrência", "Radar diário: Google, Instagram e web."]] },
 ];
 const INFO = {}; TEAM.forEach(g => g.agents.forEach(([k, n, r]) => INFO[k] = { name: n, role: r, area: g.area }));
 const SUGGEST = {
@@ -253,8 +254,9 @@ const SUGGEST = {
   "guardiao-da-marca": ["O que falta confirmar da marca?", "Revise este texto"],
   "analista-de-mensuracao": ["Monte o plano de tags do GTM", "Como instalar a captura de origem?"],
   "especialista-utm": ["Gere os parâmetros para Meta e Google", "Crie um link com UTM"],
-  "analista-de-campanhas": ["Como exporto os relatórios?", "Qual campanha performa melhor?"],
+  "analista-de-campanhas": ["Quais campanhas pausar ou escalar?", "Como exporto os relatórios?"],
   "analista-de-funil": ["Defina o que é lead qualificado", "Monte a devolutiva de vendas"],
+  "analista-de-concorrencia": ["O que a concorrência fez hoje?", "Quem são nossos concorrentes?"],
 };
 const LABEL = { livre: "Livre", trabalhando: "Trabalhando", aguardando: "Esperando você", bloqueado: "Bloqueado" };
 
