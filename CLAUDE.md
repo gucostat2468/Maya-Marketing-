@@ -62,7 +62,7 @@ ao Claude. Cada agente atualiza o próprio robô (seção "Seu robô" no arquivo
 ## Ferramentas
 
 ```bash
-python3 ferramentas/analisar_campanhas.py dados/campanhas/*.csv [--vendas vendas.csv] [--margem 0.35] --saida entregas/<pasta>
+python3 ferramentas/analisar_campanhas.py dados/campanhas/*.csv [--vendas vendas.csv] [--margem 0.35] [--cpl-alvo 25 | --cpa-alvo 150] [--orcamento-diario 120] --saida entregas/<pasta>
 python3 ferramentas/utm.py gerar --url <url> --source <source> --medium <medium> --campaign "<nome>"
 python3 ferramentas/utm.py modelos | auditar links.csv
 node ferramentas/renderizar_peca.cjs <peca.html> <largura> <altura> <saida.png>

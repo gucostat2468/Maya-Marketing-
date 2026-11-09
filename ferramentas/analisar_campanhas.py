@@ -37,6 +37,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from app.domain.metrics import CATALOG, MetricResult, MetricStatus, compute  # noqa: E402
 from ferramentas.decisoes import decidir  # noqa: E402
 from ferramentas.estatistica import poisson_ci  # noqa: E402,F401
+from ferramentas.orcamento import distribuir  # noqa: E402
 
 # ---------------------------------------------------------------------------
 # Leitura e normalização dos arquivos
@@ -611,9 +612,41 @@ def render_decisoes(campanhas: list[Campanha], decisoes: dict[tuple[str, str], A
     return "\n".join(L) + "\n\n"
 
 
+def _dias_do_periodo(files: list[Arquivo]) -> int | None:
+    from datetime import date
+    for f in files:
+        try:
+            a, b = date.fromisoformat(f.period[0][:10]), date.fromisoformat(f.period[1][:10])
+            return (b - a).days + 1
+        except (TypeError, ValueError):
+            continue
+    return None
+
+
+def render_orcamento(o: dict[str, Any]) -> str:
+    L = ["## Quanto investir por dia\n",
+         f"Limite informado: {fmt_money(o['limite'])} por dia. Gasto médio calculado sobre "
+         f"{o['dias']} dia(s) do relatório.\n",
+         "| Campanha | Decisão | Gasto atual/dia | Novo orçamento/dia | Mudança |",
+         "|---|---|---|---|---|"]
+    for l in sorted(o["linhas"], key=lambda x: -x["novo"]):
+        sinal = "+" if l["variacao"] > 0 else "-"
+        mud = "sem mudança" if l["variacao"] == 0 else f"{sinal}{fmt_money(abs(l['variacao']))}"
+        L.append(f"| {l['nome']} | {l['acao'].capitalize().replace('_', ' ')} | "
+                 f"{fmt_money(l['atual'])} | **{fmt_money(l['novo'])}** | {mud} |")
+    L.append(f"\nTotal alocado: {fmt_money(o['total'])} de {fmt_money(o['limite'])}. "
+             f"{o['recomendacao']}")
+    for a in o["avisos"]:
+        L.append(f"\n> {a}")
+    L.append("\nAumentos são de no máximo 20% por vez; repita a análise em 2 a 3 dias antes de "
+             "subir de novo. Quem altera o orçamento na plataforma é você.")
+    return "\n".join(L) + "\n\n"
+
+
 def analyze(paths: list[Path], sales_path: Path | None = None, margin: Decimal | None = None,
             minimum: int | None = None, cpl_alvo: Decimal | None = None,
-            cpa_alvo: Decimal | None = None) -> dict[str, Any]:
+            cpa_alvo: Decimal | None = None, orcamento_diario: Decimal | None = None,
+            dias: int | None = None) -> dict[str, Any]:
     seen: set[str] = set()
     files: list[Arquivo] = []
     records: list[dict[str, Any]] = []
@@ -649,7 +682,26 @@ def analyze(paths: list[Path], sales_path: Path | None = None, margin: Decimal |
     decisoes = decide_all(campanhas, unique, cpl_alvo, cpa_alvo)
     report = build_report(files, campanhas, metric, minimum, ranking, diags, margin,
                           sales_path is not None)
-    report = report.replace("## Ranking:", render_decisoes(campanhas, decisoes) + "## Ranking:", 1)
+    orcamento = None
+    bloco_orc = ""
+    if orcamento_diario is not None:
+        n_dias = dias or len({r["day"] for r in unique if r["day"]}) or _dias_do_periodo(files)
+        if not n_dias:
+            bloco_orc = ("## Quanto investir por dia\n\nNão consegui saber quantos dias o "
+                         "relatório cobre. Exporte com a coluna Dia ou informe `--dias`.\n\n")
+        else:
+            total_leads = _sum([c.base.get("leads") for c in campanhas])
+            gasto_leads = _sum([c.base["spend"] for c in campanhas if c.base.get("leads")])
+            ref = cpl_alvo or (gasto_leads / total_leads if gasto_leads and total_leads else None)
+            entrada = [{"nome": c.campaign,
+                        "gasto_dia": (c.base["spend"] or Decimal(0)) / n_dias,
+                        "acao": (decisoes.get((c.platform, c.campaign)) or {}).get("acao", "MANTER")}
+                       for c in campanhas]
+            orcamento = distribuir(entrada, orcamento_diario, ref)
+            orcamento["dias"] = n_dias
+            bloco_orc = render_orcamento(orcamento)
+    report = report.replace("## Ranking:",
+                            render_decisoes(campanhas, decisoes) + bloco_orc + "## Ranking:", 1)
     if warnings:
         report = report.replace("## Totais", "> " + "\n> ".join(warnings) + "\n\n## Totais", 1)
     return {
@@ -665,6 +717,7 @@ def analyze(paths: list[Path], sales_path: Path | None = None, margin: Decimal |
         } for c in campanhas],
         "ranking": [c.campaign for c in ranking],
         "diagnostics": diags,
+        "orcamento": orcamento,
         "report_markdown": report,
     }
 
@@ -677,13 +730,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--minimo", type=int, help="volume mínimo para entrar no ranking")
     parser.add_argument("--cpl-alvo", type=Decimal, help="custo máximo aceitável por lead (R$)")
     parser.add_argument("--cpa-alvo", type=Decimal, help="custo máximo aceitável por venda (R$)")
+    parser.add_argument("--orcamento-diario", type=Decimal,
+                        help="limite total de investimento por dia (R$)")
+    parser.add_argument("--dias", type=int, help="dias cobertos pelo relatório (se não houver coluna Dia)")
     parser.add_argument("--saida", type=Path, help="pasta para salvar relatorio.md e resultado.json")
     args = parser.parse_args(argv)
     if args.margem is not None and not (Decimal(0) < args.margem <= Decimal(1)):
         parser.error("--margem deve estar entre 0 e 1 (ex.: 0.35).")
     try:
         result = analyze(args.arquivos, args.vendas, args.margem, args.minimo,
-                         args.cpl_alvo, args.cpa_alvo)
+                         args.cpl_alvo, args.cpa_alvo, args.orcamento_diario, args.dias)
     except (LeituraErro, FileNotFoundError) as exc:
         print(f"Erro: {exc}", file=sys.stderr)
         return 2

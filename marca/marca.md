@@ -148,7 +148,7 @@ usar em mídia paga.
 | Carências e regras de dependentes | pendente (ver "Saiba Mais") |
 | Confirmação dos números "6 mil usuários" e "400 parceiros" para uso em anúncio | pendente |
 | Palavras proibidas e orientações do jurídico | pendente |
-| Relação com o Grupo Maya | pendente |
+| Relação com o Grupo Maya | confirmado: mesma empresa (seção 12) |
 
 ## 10. Observações para a equipe (vistas nos prints)
 
@@ -180,3 +180,18 @@ usar em mídia paga.
 - **Observação do Diretor de Arte:** o feed é muito dependente de datas comemorativas e de
   fotos de banco; os posts mais úteis (comparativo, mito ou verdade, passo a passo) são os que
   devem virar série fixa.
+
+## 12. Confirmado pelo usuário em 09/11/2026
+
+- **Maya e Maya Protege são a mesma empresa.** A Maya Protege é um produto novo da Maya, que
+  vende serviços funerários, entre outras coisas. O radar de concorrência identificou que o
+  Grupo Maya (concessionária de cemitérios da capital) tem reputação ruim no Reclame Aqui:
+  a equipe deve ter resposta pronta e serena para quem citar isso, sem negar o vínculo.
+- **Campanhas pagas atuais (2):** (1) São Paulo capital; (2) cidades mais populosas do
+  estado (Guarulhos, Osasco, Santo André etc.).
+- **Preço divulgável:** o usuário não sabe; perguntar à empresa. Até lá, nenhuma peça cita preço.
+- **Rotina de planejamento:** sempre planejar o mês seguinte (orgânico, stories e pago),
+  considerando sazonalidade e datas. Posts e stories são agendados no Meta Business Suite
+  (Planejador); anúncios, no Gerenciador de Anúncios.
+- **O usuário é iniciante em Meta Ads e GA4:** toda entrega explica o porquê e o passo a passo.
+- **Orçamento de mídia:** há um limite (valor ainda não informado).

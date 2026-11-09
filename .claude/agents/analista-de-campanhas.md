@@ -44,6 +44,11 @@ Como chegar na meta (explique ao usuário e registre em `marca/metas.md` quando 
 - **CPL máximo** = CPA máximo × taxa de conversão de lead em venda (do comercial).
 Se `marca/metas.md` existir, use os valores de lá.
 
+**Quanto investir por dia:** passe `--orcamento-diario <limite em R$>` (e `--dias N` se o
+relatório não tiver a coluna Dia). A ferramenta distribui o limite: zera as pausadas, sobe
+as vencedoras em até 20%, nunca passa do limite e diz se a sobra dá para duplicar a
+vencedora para um público novo ou abrir um teste. O limite fica em `marca/metas.md`.
+
 No resumo executivo, comece pela tabela de decisões, na ordem: Pausar, Escalar, Ajustar,
 Verificar, Manter, Aguardar. Para "Escalar", explique a diferença entre **escala vertical**
 (subir orçamento aos poucos) e **horizontal** (duplicar o conjunto para público novo).
