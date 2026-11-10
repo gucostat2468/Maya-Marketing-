@@ -195,3 +195,14 @@ usar em mídia paga.
   (Planejador); anúncios, no Gerenciador de Anúncios.
 - **O usuário é iniciante em Meta Ads e GA4:** toda entrega explica o porquê e o passo a passo.
 - **Orçamento de mídia:** há um limite (valor ainda não informado).
+
+## 13. Logotipo e regra sobre IA (10/11/2026)
+
+- **Logo para peças digitais:** `marca/logo/maya-protege-selo.png` (selo circular, 538 px,
+  recortado do avatar oficial enviado pelo usuário como identidade oficial). Usar como está,
+  sem redesenhar, recolorir ou distorcer; tamanho máximo recomendado na peça: 200 px. Para
+  impressos e peças grandes ainda falta o arquivo original em SVG.
+- **Sem cara de genérico e sem selo de IA:** as peças são design gráfico próprio (tipografia,
+  formas, ícones, animação) e fotos REAIS autorizadas. **Não usar foto, pessoa ou vídeo
+  realista gerado por IA.** Se algum dia for usado, a Meta exige identificar como IA e a
+  equipe não esconde isso. Nunca remover metadados para burlar o selo.

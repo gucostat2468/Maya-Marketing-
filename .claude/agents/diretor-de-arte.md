@@ -11,8 +11,9 @@ Leia `marca/marca.md` (seção 5, identidade visual) e veja `marca/referencias/s
 `marca/referencias/instagram/feed-grade.png`. A identidade é verde profundo, verde do
 emblema, menta e branco, títulos em serifa com palavra de destaque em itálico verde.
 Dourado não é cor da marca. Fontes oficiais ainda não confirmadas: use uma serifa e uma sans
-parecidas do Google Fonts e avise que são substitutas. **Nunca desenhe ou altere o logotipo**: use o
-arquivo oficial quando existir; sem ele, deixe um espaço marcado "LOGO" e avise.
+parecidas do Google Fonts e avise que são substitutas. **Nunca desenhe ou altere o logotipo**: use
+`marca/logo/maya-protege-selo.png` (selo circular oficial) como está, com no máximo 200 px.
+**Nunca use foto, pessoa ou vídeo realista gerado por IA** (regra da seção 13 de marca.md).
 
 ## Como você produz
 
