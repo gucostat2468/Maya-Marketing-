@@ -1,6 +1,6 @@
 # Padrão visual do Instagram: Maya Protege
 
-**Versão 1.1 · 06/11/2026 · Dono: Diretor de Arte.** (1.1: seção 13, botões e chamadas para ação por formato.) Regra para toda a equipe (Diretor de Arte,
+**Versão 1.2 · 12/11/2026 · Dono: Diretor de Arte.** (1.1: seção 13, botões e chamadas para ação por formato. 1.2: seção 14, sistema gráfico e identidade por série; logo oficial no lugar do espaço "LOGO"; regra de fotografia atualizada.) Regra para toda a equipe (Diretor de Arte,
 Social Media, Copywriter, Gestor de Meta Ads, Guardião da Marca). Vale para feed, carrossel e
 stories, orgânico e anúncio. Base: `marca/marca.md` e a auditoria
 `entregas/2026-11-06-padrao-visual/auditoria-feed.md`. Exemplos aplicados:
@@ -140,19 +140,21 @@ vivo é tempero, não fundo.
 
 ## 6. Fotografia
 
-- **Padrão é peça sem foto:** tipografia + forma geométrica + cartão menta. Foto é exceção.
-- **Quando usar foto:** bastidores reais (atendente real da assistência 24h, equipe), família real
-  com autorização de imagem por escrito, datas com símbolo (flor branca em Finados).
-- **Quando não usar:** foto gerada por IA com rostos; banco de imagens com família sorrindo
-  genérica; tristeza, choro, caixão, hospital em destaque; foto com logo da marca gerado ou
-  deformado; prints recortados.
-- **Tratamento:** luz natural quente, saturação -10%, contraste suave; foto ocupa no máximo 50% da
-  peça, em bloco com cantos de 40 px ou sangrando por um lado; texto **nunca sobre rosto**; se há
-  texto sobre a foto, degradê de #091D19 a 0% → 85%.
-- **Frequência:** no máximo **1 post com foto a cada 3** na grade; nunca 2 famílias sorrindo
-  seguidas.
-- Sem foto disponível: deixar um espaço marcado `data-slot="foto"` com legenda descrevendo a foto
-  ideal. Nunca preencher com imagem qualquer.
+- **Só foto real:** licenciada (banco de imagens pago, como o Adobe Stock, com a licença guardada)
+  ou própria, com autorização de imagem por escrito. **Nunca foto, pessoa ou cena gerada por IA.**
+- **Modelos de banco não são clientes:** nunca usar como depoimento, nem com nome, idade, cidade
+  ou fala atribuída. Sem marca d'água. Guardar o ID da foto no nome do arquivo.
+- **Onde faz sentido:** peças de afeto (datas, capa de carrossel). Conteúdo de lista, checklist e
+  comparativo continua gráfico. Toda peça com foto tem uma **alternativa gráfica** pronta.
+- **Layout aprovado (12/11/2026):** foto no topo (até 880 px de altura no feed), **degradê para o
+  verde profundo** na base (0% → 84% → #091D19), véu verde `#0C332A` em luz suave (35% a 45%),
+  saturação entre 78% e 92%; logo selo sobre a foto, fora de rostos; rótulo, título serifado e
+  chamada sobre o verde profundo. **Texto e logo nunca sobre rosto.**
+  Exemplo: `entregas/2026-11-12-pecas-com-foto/feed-dia-da-familia-foto.html`.
+- **Não usar:** tristeza, choro, caixão, hospital em destaque; foto com logo gerado ou deformado;
+  prints recortados. Atenção redobrada a foto de pessoa idosa ao lado de texto de plano: passa
+  pelo Guardião.
+- **Frequência:** no máximo **1 post com foto a cada 3** na grade; nunca 2 fotos de família seguidas.
 
 ## 7. Ícones e formas
 
@@ -160,18 +162,21 @@ vivo é tempero, não fundo.
   de 96 a 104 px com raio 24 (menta no claro; #0C332A ou menta no escuro).
 - **Só em listas**, 1 por item, **no máximo 4 por peça**. Nunca como decoração solta. Nunca emoji.
 - O ícone de WhatsApp só aparece em CTA que **abre o WhatsApp**.
-- **Formas:** hexágono e pétala geométrica do universo do emblema, em verde translúcido (8% a 20%)
-  ou só contorno, sangrando pela borda. **1 forma por peça.** Nunca desenhar ou imitar o logotipo.
+- **Formas:** a fita hexagonal de 6 facetas (seção 14). **1 grafismo por peça.** O hexágono solto em
+  contorno, usado até a versão 1.1, sai de uso. Nunca desenhar ou imitar o logotipo.
 - Cartões com raio 32 a 40 px. **Pílula cheia com cara de botão não é usada em peça do Instagram** (seção 13).
 
 ## 8. Logo
 
-- **Posição fixa:** canto superior esquerdo, x 80, y 80, altura 56 px (versão horizontal: emblema +
-  "Maya Protege"). Stories: x 80, y 280.
-- Aparece **1 vez por peça**. Carrossel: na capa e no slide final; slides internos levam só o
-  contador.
-- **Arquivo oficial ainda não recebido.** Enquanto isso, usar o espaço tracejado "LOGO" (200 x 56)
-  e trocar pelo arquivo oficial. Proibido recortar o logo de print ou redesenhá-lo.
+- **Arquivo oficial:** `marca/logo/maya-protege-selo.png` (selo circular). Usar **como está**: sem
+  redesenhar, recolorir, distorcer ou recortar. O espaço tracejado "LOGO" não é mais usado.
+- **Posição fixa:** canto superior esquerdo, x 80, y 80. **Tamanho: 120 a 160 px no feed (padrão
+  136); 148 px no stories** (x 80, y 280). Máximo 200 px (o arquivo tem 538 px).
+- Em fundo escuro, um fio de 2 px branco a 10% e sombra suave soltam o selo do fundo; em fundo
+  claro, só a sombra. Isso é apoio do layout, não alteração do logo.
+- Aparece **1 vez por peça**. Carrossel: na capa e no slide final; slides internos levam o rótulo
+  da série e o contador.
+- Sobre foto, o selo fica fora de rostos. Para impresso e peças grandes falta o SVG original.
 
 ## 9. Carrossel
 
@@ -206,8 +211,8 @@ vivo é tempero, não fundo.
 7. [ ] Stories: nada importante em y < 250 ou y > 1580.
 8. [ ] **1 CTA**, visível, com verbo da marca, **no formato certo para o lugar** (seção 13): stories com zona da figurinha limpa; anúncio sem botão desenhado; feed orgânico como instrução, sem pílula.
 9. [ ] **1 destaque** em itálico verde, no máximo.
-10. [ ] Logo na posição fixa, 1 vez (ou espaço "LOGO").
-11. [ ] Foto: real, autorizada, sem tristeza em destaque, sem logo gerado (ou nenhuma foto).
+10. [ ] Logo oficial (selo) na posição fixa, 1 vez, entre 120 e 160 px no feed.
+11. [ ] Foto: real, licenciada ou própria, **nunca de IA**; modelo de banco não é depoimento; nada sobre rosto (ou nenhuma foto).
 12. [ ] Ícones ≤ 4, só em lista, sem emoji.
 13. [ ] Itens de plano citados existem em marca.md, seção 2; sem preço, "seguro" ou número não
     confirmado.
@@ -269,3 +274,48 @@ muda conforme o lugar onde a peça aparece:
 | WhatsApp | "Chame no WhatsApp: (11) 94552-4233" | balão de conversa (o ícone do WhatsApp fica para o que abre o WhatsApp de verdade: figurinha e anúncio, seção 7) |
 
 - Nunca escrever "Clique aqui" ou "Toque aqui" numa peça de feed: não há onde tocar.
+
+## 14. Sistema gráfico e identidade por série
+
+Exemplos aplicados: `entregas/2026-11-10-pecas-dezembro/pecas/` (o código que desenha as formas
+está em `gerar_pecas.py`, funções `anel` e `fita`).
+
+### 14.1 O grafismo: fita hexagonal de 6 facetas
+- Vem das formas verdes de vidro do site, **não do emblema**. É uma família de formas, e nunca
+  uma cópia do logo: **proibido anel de 8 pétalas** e proibido grafismo pequeno e inteiro perto do selo.
+- **Dois estados:** *anel frontal* (6 trapézios separados por um vão de 7 a 11 px, cada um com
+  chanfro claro por fora e escuro por dentro) e *fita em perspectiva* (parede hexagonal vista de
+  cima, face de dentro mais escura, fio de luz na borda de cima).
+- **Faceta acesa ou apagada:** acesa é vidro verde (#2DBB66 a #9DF2BB no escuro; #0D9448 a #49CF72
+  no claro); apagada é só contorno (verde a 42%) com preenchimento a 7%. Quando o anel conta
+  alguma coisa (itens, etapas), **cada faceta acesa é um item**.
+- **Escala e posição:** sempre grande (raio de 260 a 560 px no feed) e **cortado por pelo menos
+  uma borda**. Nunca atrás de texto: 40 px de folga, no mínimo, do título e da chamada.
+- **Profundidade:** brilho desfocado atrás das facetas acesas (até 50%), luz radial no fundo e
+  grão fino (16% no escuro, 5% no claro). Sem sombra dura, sem neon.
+- **Faixa:** o trapézio pequeno (34 x 14 px, inclinado 30°) marca o rótulo da série; a tira de
+  trapézios é o contador de slides.
+
+### 14.2 Números e listas como imagem
+- Número que carrega informação ("24h", "100 km") vai em **serifa regular de 200 a 232 px**, unidade
+  em 96 px, branco com degradê leve para menta. Máximo de 2 por slide.
+- Número de ordem pode aparecer gigante ao fundo (700 px, #E7F6EE no claro), sem competir com o texto.
+- Listas: linhas com fio de 2 px entre os itens, marcador hexagonal com "check" de 92 px, texto
+  Inter 500 de 46 px. Sem pictograma de urna, caixão ou pessoa.
+
+### 14.3 Identidade por série
+
+| Série | Fundo | Grafismo | Rótulo |
+|---|---|---|---|
+| O que está incluído | Escuro (#091D19 com luz no canto superior direito) | Anel frontal que acende por item; números gigantes | O QUE ESTÁ INCLUÍDO |
+| Mito ou verdade | Claro (#F8FAF9) | Anel partido em duas metades, verde escuro e verde vivo | MITO OU VERDADE? |
+| Datas | Escuro com "aurora" verde na base, ou foto real (seção 6) | Fitas em perspectiva de tamanhos diferentes | DIA + NOME DA DATA |
+| Organização familiar | Menta (#F1FBF6 a #DCF2E6) | Fichário: divisórias brancas com aba numerada | ORGANIZAÇÃO FAMILIAR |
+| Séries novas | Escolher fundo e estado do grafismo ainda não usados em sequência | | |
+
+- A série mantém fundo, grafismo e posição do título em todos os posts; o que muda é o conteúdo.
+- Uma série pode fixar a própria altura de título nos slides internos (o fichário usa y 424),
+  desde que seja igual em todos os slides.
+- A alternância escuro/claro da seção 10 continua valendo: ao montar o calendário, alternar as séries.
+- **Teste da grade:** antes de entregar, montar `grade-simulada.png` (recorte central 3:4) com as
+  últimas 6 peças. Se duas vizinhas parecerem a mesma peça, refazer.
