@@ -319,3 +319,22 @@ está em `gerar_pecas.py`, funções `anel` e `fita`).
 - A alternância escuro/claro da seção 10 continua valendo: ao montar o calendário, alternar as séries.
 - **Teste da grade:** antes de entregar, montar `grade-simulada.png` (recorte central 3:4) com as
   últimas 6 peças. Se duas vizinhas parecerem a mesma peça, refazer.
+
+## 15. Vídeo (Reels e Stories)
+
+Regra do usuário (12/11/2026), vale para **todo** vídeo:
+
+- **Logo oficial (selo) fixo no canto superior direito, do primeiro ao último quadro.** Em
+  1080 x 1920: 132 px de diâmetro, a 72 px da borda direita e 170 px do topo (abaixo da
+  barra do Instagram). Não some entre as cenas.
+- **Duração padrão: 30 a 40 segundos**, com áudio.
+- **Áudio:** trilha instrumental licenciada (banco de áudio, com o número da licença anotado
+  na ficha da entrega) ou narração gravada por pessoa real. Nunca voz sintética nem música
+  gerada por IA.
+- **Imagem:** foto ou clipe real licenciado ou próprio (seção 6). Nunca vídeo realista
+  gerado por IA.
+- Texto dentro da área segura: nada importante nos 250 px do topo nem nos 350 px de baixo.
+- Itens de plano citados no vídeo saem de `marca/marca.md`, com o nome do plano na tela, e o
+  último quadro traz a linha de condições com o site.
+- Modelo de referência: `entregas/2026-11-12-video-serenidade/video-serenidade-36s.html`
+  (gravado com `ferramentas/gravar_video.cjs`; a trilha entra depois com o ffmpeg).
