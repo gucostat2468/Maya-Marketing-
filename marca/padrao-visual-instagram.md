@@ -325,8 +325,8 @@ está em `gerar_pecas.py`, funções `anel` e `fita`).
 Regra do usuário (12/11/2026), vale para **todo** vídeo:
 
 - **Logo oficial (selo) fixo no canto superior direito, do primeiro ao último quadro.** Em
-  1080 x 1920: 132 px de diâmetro, a 72 px da borda direita e 170 px do topo (abaixo da
-  barra do Instagram). Não some entre as cenas.
+  1080 x 1920: 148 px de diâmetro, a 72 px da borda direita e 260 px do topo (abaixo da
+  faixa de 250 px que o Instagram cobre). O selo nunca fica sobre um rosto. Não some entre as cenas.
 - **Duração padrão: 30 a 40 segundos**, com áudio.
 - **Áudio:** trilha instrumental licenciada (banco de áudio, com o número da licença anotado
   na ficha da entrega) ou narração gravada por pessoa real. Nunca voz sintética nem música
